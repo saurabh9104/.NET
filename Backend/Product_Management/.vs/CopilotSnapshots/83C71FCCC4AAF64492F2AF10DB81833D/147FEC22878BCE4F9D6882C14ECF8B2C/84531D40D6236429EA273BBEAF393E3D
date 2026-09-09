@@ -1,0 +1,49 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using MySql.Data.MySqlClient;
+
+namespace Product_Management
+{
+    public class DBHelper
+    {
+        private static string connectionString =
+            "Server=localhost;Port=3306;Database=dotnet;Uid=root;Pwd=@S123456p;";
+
+        public static MySqlConnection GetOpenConnection()
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                return connection;
+            }
+            catch (MySqlException ex)
+            {
+                connection?.Dispose();
+                Console.Error.WriteLine($"Failed to connect to database: {ex.Message}");
+                Console.Error.WriteLine($"Connection String: Server={ExtractFromConnectionString("Server")}, Database={ExtractFromConnectionString("Database")}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                connection?.Dispose();
+                Console.Error.WriteLine($"Unexpected error connecting to database: {ex.Message}");
+                throw;
+            }
+        }
+
+        private static string ExtractFromConnectionString(string key)
+        {
+            var parts = connectionString.Split(';');
+            foreach (var part in parts)
+            {
+                if (part.Contains($"{key}="))
+                {
+                    return part.Split('=')[1];
+                }
+            }
+            return "unknown";
+        }
+    }
+}

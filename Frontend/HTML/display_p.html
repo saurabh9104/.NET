@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            display: block;
+            border: 1px solid black;
+        }
+        .div1 {
+          
+            border: 1px solid red;
+        }
+        .divC {
+            display: flex;
+            div{
+                border: 1px solid blue;
+            }
+        }
+        .abc1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            display:none;
+        }
+        .abc2 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            visibility: hidden;
+        }
+
+    </style>
+</head>
+<body>
+    <span>this is span 1</span>
+    <span>this is span 2</span>
+    <span>this is span 3</span>
+    <span>this is span 4</span>
+    <br><br>
+    <div class="div1">this is span 1</div>
+    <div class="div1">this is span 2</div>
+    <div class="div1">this is span 3</div>
+    <div class="div1">this is span 4</div>
+<br><br>
+    <div class="divC">
+    <div class="div2">this is span 1</div>
+    <div class="div2">this is span 2</div>
+    <div class="div2">this is span 3</div>
+    <div class="div2">this is span 4</div>
+    </div>
+    <div class="abc1"></div>
+    <p>hello red</p>
+    <div class="abc2"></div>
+    <p>hello blue</p>
+</body>
+</html>

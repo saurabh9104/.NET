@@ -1,0 +1,57 @@
+﻿using System;
+
+namespace MyApp
+{
+    public enum LogLevel { Trace, Debug, Info, Warning, Error, Fatal }
+
+    // Very simple Main that demonstrates an enum
+    internal static class Program
+    {
+        private static void Main()
+        {
+            LogLevel level = LogLevel.Info;
+            Console.WriteLine(level); // Output: Info
+        }
+    }
+}
+//using System;
+//using System.Collections.Generic;
+//using System.Runtime.Intrinsics.Arm;
+//using System.Text;
+
+//namespace MyApp
+//{
+//    internal class Datatype
+//    {
+//        static void Main(string[] args)
+//        {
+//            int age = 30;
+//            double salary = 55000.75;
+//            float height = 5.9f;
+//            decimal accountBalance = 150000.55m;
+//            char grade = 'A';
+//            bool isEmployed = true;
+//            string name = "John";
+
+//            Console.WriteLine($"Name: {name}");
+//            Console.WriteLine($"Age: {age}");
+//            Console.WriteLine($"Salary: {salary}");
+//            Console.WriteLine($"Height: {height}");
+//            Console.WriteLine($"Balance: {accountBalance}");
+//            Console.WriteLine($"Grade: {grade}");
+//            Console.WriteLine($"Employed: {isEmployed}");
+
+
+
+//            Console.WriteLine($"byte: {sizeof(byte)}");
+//            Console.WriteLine($"short: {sizeof(short)}");
+//            Console.WriteLine($"int: {sizeof(int)}");
+//            Console.WriteLine($"long: {sizeof(long)}");
+//            Console.WriteLine($"float: {sizeof(float)}");
+//            Console.WriteLine($"double: {sizeof(double)}");
+//            Console.WriteLine($"char: {sizeof(char)}");
+//            Console.WriteLine($"bool: {sizeof(bool)}");
+//            Console.WriteLine($"decimal: {sizeof(decimal)}");
+//        }
+//    }
+//}

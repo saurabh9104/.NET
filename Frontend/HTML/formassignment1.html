@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="submit.html" method="get  ">
+
+        <h3>REGISTRATION</h3>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter your Name" pattern="^[a-zA-Z]{1,20}$" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" placeholder="Enter your Password" pattern="^[A-Za-z0-9]{1,10}$" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" placeholder="Enter your Email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$" required>
+        <br>
+        <label for="phone">Phone:</label>
+        <input type="tel" name="phone" id="phone" placeholder="Enter your Phone Number" pattern="[6-9][0-9]{9}" required>
+        <br>
+        <label for="gender">Gender:</label>
+        <input type="radio" name="gender" id="male" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" name="gender" id="female" value="female" required>
+        <label for="female">Female</label>
+        <input type="radio" name="gender" id="other" value="other" required>
+        <label for="other">Other</label>
+        <br>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" name="dob" id="dob" required>
+        <br>
+        <label for="language">Language:</label>
+        <input type="checkbox" name="language" id="english" value="english">
+        <label for="english">English</label>
+        <input type="checkbox" name="language" id="hindi" value="hindi">
+        <label for="hindi">Hindi</label>
+        <input type="checkbox" name="language" id="other" value="other">
+        <label for="other">Other</label>
+        <br>
+        <label for="address">Address:</label>
+        <input type="text" name="address" id="address" required>
+        <br>
+        <input type="submit" value="Submit">
+        <input type="reset" value="reset">
+        <br>
+    </form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using MySql.Data.MySqlClient;
+
+namespace Product_Management
+{
+    public class DBHelper
+    {
+        private static string connectionString =
+            "Server=localhost;Database=DOTNET;Uid=root;Pwd=@S123456p;";
+
+        public static MySqlConnection GetOpenConnection()
+        {
+            var connection = new MySqlConnection(connectionString);
+            connection.Open();
+            return connection;
+        }
+    }
+}

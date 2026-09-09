@@ -1,0 +1,440 @@
+﻿using System;
+using System.Collections.Generic;
+using ProductManagementSystem.Repositories;
+using ProductManagementSystem.Models;
+
+namespace ProductManagementSystem.Menus
+{
+    public class EmployeeMenu
+    {
+        private static ProductRepository _productRepo;
+        private static CustomerRepository _customerRepo;
+        private static OrderRepository _orderRepo;
+        private static OrderDetailsRepository _orderDetailsRepo;
+
+        public static void Display()
+        {
+            _productRepo = new ProductRepository();
+            _customerRepo = new CustomerRepository();
+            _orderRepo = new OrderRepository();
+            _orderDetailsRepo = new OrderDetailsRepository();
+
+            bool isRunning = true;
+
+            while (isRunning)
+            {
+                Console.Clear();
+                Console.WriteLine("\n===== EMPLOYEE MENU =====");
+                Console.WriteLine("1. View Products");
+                Console.WriteLine("2. Create Order");
+                Console.WriteLine("3. View Customers");
+                Console.WriteLine("4. Logout");
+                Console.WriteLine("========================");
+                Console.Write("Select an option (1-4): ");
+
+                string selection = Console.ReadLine();
+
+                switch (selection)
+                {
+                    case "1":
+                        ViewProducts();
+                        break;
+                    case "2":
+                        CreateOrder();
+                        break;
+                    case "3":
+                        ViewCustomers();
+                        break;
+                    case "4":
+                        isRunning = false;
+                        Console.WriteLine("\n✅ Logged out successfully.");
+                        break;
+                    default:
+                        Console.WriteLine("❌ Invalid option. Press any key to continue...");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// View all products
+        /// </summary>
+        private static void ViewProducts()
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== VIEW PRODUCTS =====");
+
+            try
+            {
+                List<Product> products = _productRepo.GetAll();
+
+                if (products.Count == 0)
+                {
+                    Console.WriteLine("\n❌ No products found.");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    return;
+                }
+
+                Console.WriteLine($"\nTotal Products: {products.Count}\n");
+                Console.WriteLine("┌─────┬────────────────────────┬──────────┬───────────┐");
+                Console.WriteLine("│  ID │     Product Name       │  Price   │ Quantity  │");
+                Console.WriteLine("├─────┼────────────────────────┼──────────┼───────────┤");
+
+                foreach (var product in products)
+                {
+                    string name = product.ProductName.Length > 22 ? product.ProductName.Substring(0, 19) + "..." : product.ProductName;
+                    Console.WriteLine($"│ {product.ProductId:D3} │ {name,-22} │ ${product.Price:F2,-7} │ {product.Quantity,9} │");
+                }
+
+                Console.WriteLine("└─────┴────────────────────────┴──────────┴───────────┘");
+
+                Console.WriteLine("\n--- Options ---");
+                Console.WriteLine("1. Search Product by Name");
+                Console.WriteLine("2. Back to Main Menu");
+                Console.Write("Select: ");
+
+                string choice = Console.ReadLine();
+                if (choice == "1")
+                {
+                    SearchProduct();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n❌ Error: {ex.Message}");
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Search for a product by name
+        /// </summary>
+        private static void SearchProduct()
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== SEARCH PRODUCT =====");
+            Console.Write("Enter product name: ");
+            string name = Console.ReadLine();
+
+            try
+            {
+                List<Product> results = _productRepo.SearchByName(name);
+
+                if (results.Count == 0)
+                {
+                    Console.WriteLine($"\n❌ No products found matching '{name}'");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    return;
+                }
+
+                Console.WriteLine($"\n✅ Found {results.Count} product(s):\n");
+                Console.WriteLine("┌─────┬────────────────────────┬──────────┬───────────┐");
+                Console.WriteLine("│  ID │     Product Name       │  Price   │ Quantity  │");
+                Console.WriteLine("├─────┼────────────────────────┼──────────┼───────────┤");
+
+                foreach (var product in results)
+                {
+                    string productName = product.ProductName.Length > 22 ? product.ProductName.Substring(0, 19) + "..." : product.ProductName;
+                    Console.WriteLine($"│ {product.ProductId:D3} │ {productName,-22} │ ${product.Price:F2,-7} │ {product.Quantity,9} │");
+                }
+
+                Console.WriteLine("└─────┴────────────────────────┴──────────┴───────────┘");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n❌ Error: {ex.Message}");
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Create a new order
+        /// </summary>
+        private static void CreateOrder()
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== CREATE ORDER =====");
+
+            try
+            {
+                // Get Customer ID
+                Console.Write("Enter Customer ID: ");
+                if (!int.TryParse(Console.ReadLine(), out int customerId))
+                {
+                    Console.WriteLine("❌ Invalid Customer ID");
+                    Console.ReadKey();
+                    return;
+                }
+
+                Customer customer = _customerRepo.GetById(customerId);
+                if (customer == null)
+                {
+                    Console.WriteLine($"❌ Customer with ID {customerId} not found");
+                    Console.ReadKey();
+                    return;
+                }
+
+                Console.WriteLine($"✅ Customer: {customer.CustomerName}");
+
+                // Create order
+                Order order = new Order();
+                order.CustomerId = customerId;
+                order.EmployeeId = 1; // Currently logged-in employee (hardcoded for now)
+                order.OrderDate = DateTime.Now;
+                order.Status = "Pending";
+                order.TotalAmount = 0;
+
+                _orderRepo.Add(order);
+                int newOrderId = _orderRepo.GetAll()[_orderRepo.GetAll().Count - 1].OrderId;
+
+                Console.WriteLine($"✅ Order created successfully! Order ID: {newOrderId}");
+
+                // Add order items
+                bool addingItems = true;
+                while (addingItems)
+                {
+                    Console.Write("\nEnter Product ID: ");
+                    if (!int.TryParse(Console.ReadLine(), out int productId))
+                    {
+                        Console.WriteLine("❌ Invalid Product ID");
+                        continue;
+                    }
+
+                    Product product = _productRepo.GetById(productId);
+                    if (product == null)
+                    {
+                        Console.WriteLine($"❌ Product with ID {productId} not found");
+                        continue;
+                    }
+
+                    Console.WriteLine($"✅ Product: {product.ProductName} - ${product.Price}");
+
+                    Console.Write("Enter Quantity: ");
+                    if (!int.TryParse(Console.ReadLine(), out int quantity))
+                    {
+                        Console.WriteLine("❌ Invalid Quantity");
+                        continue;
+                    }
+
+                    if (quantity > product.Quantity)
+                    {
+                        Console.WriteLine($"❌ Only {product.Quantity} items available");
+                        continue;
+                    }
+
+                    OrderDetails orderDetail = new OrderDetails
+                    {
+                        OrderId = newOrderId,
+                        ProductId = productId,
+                        Quantity = quantity,
+                        Price = product.Price,
+                        Discount = 0
+                    };
+
+                    _orderDetailsRepo.Add(orderDetail);
+                    order.TotalAmount += product.Price * quantity;
+
+                    Console.WriteLine($"✅ Item added! Total: ${order.TotalAmount:F2}");
+
+                    Console.Write("\nAdd more items? (y/n): ");
+                    addingItems = Console.ReadLine().ToLower() == "y";
+                }
+
+                // Update order total
+                _orderRepo.Update(order);
+
+                Console.WriteLine($"\n✅ Order completed! Total Amount: ${order.TotalAmount:F2}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n❌ Error: {ex.Message}");
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// View all customers
+        /// </summary>
+        private static void ViewCustomers()
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== VIEW CUSTOMERS =====");
+
+            try
+            {
+                List<Customer> customers = _customerRepo.GetAll();
+
+                if (customers.Count == 0)
+                {
+                    Console.WriteLine("\n❌ No customers found.");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    return;
+                }
+
+                Console.WriteLine($"\nTotal Customers: {customers.Count}\n");
+                Console.WriteLine("┌─────┬────────────────────────┬──────────────────┬──────────────────┐");
+                Console.WriteLine("│  ID │    Customer Name       │      Email       │      Phone       │");
+                Console.WriteLine("├─────┼────────────────────────┼──────────────────┼──────────────────┤");
+
+                foreach (var customer in customers)
+                {
+                    string name = customer.CustomerName.Length > 22 ? customer.CustomerName.Substring(0, 19) + "..." : customer.CustomerName;
+                    string email = customer.Email.Length > 16 ? customer.Email.Substring(0, 13) + "..." : customer.Email;
+                    string phone = customer.Phone.Length > 16 ? customer.Phone.Substring(0, 13) + "..." : customer.Phone;
+
+                    Console.WriteLine($"│ {customer.CustomerId:D3} │ {name,-22} │ {email,-16} │ {phone,-16} │");
+                }
+
+                Console.WriteLine("└─────┴────────────────────────┴──────────────────┴──────────────────┘");
+
+                Console.WriteLine("\n--- Options ---");
+                Console.WriteLine("1. Search Customer");
+                Console.WriteLine("2. View Customer Details");
+                Console.WriteLine("3. Back to Main Menu");
+                Console.Write("Select: ");
+
+                string choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "1":
+                        SearchCustomer();
+                        break;
+                    case "2":
+                        ViewCustomerDetails();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n❌ Error: {ex.Message}");
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Search for a customer by name
+        /// </summary>
+        private static void SearchCustomer()
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== SEARCH CUSTOMER =====");
+            Console.Write("Enter customer name: ");
+            string name = Console.ReadLine();
+
+            try
+            {
+                List<Customer> results = _customerRepo.SearchByName(name);
+
+                if (results.Count == 0)
+                {
+                    Console.WriteLine($"\n❌ No customers found matching '{name}'");
+                    Console.WriteLine("Press any key to continue...");
+                    Console.ReadKey();
+                    return;
+                }
+
+                Console.WriteLine($"\n✅ Found {results.Count} customer(s):\n");
+                Console.WriteLine("┌─────┬────────────────────────┬──────────────────┬──────────────────┐");
+                Console.WriteLine("│  ID │    Customer Name       │      Email       │      Phone       │");
+                Console.WriteLine("├─────┼────────────────────────┼──────────────────┼──────────────────┤");
+
+                foreach (var customer in results)
+                {
+                    string customerName = customer.CustomerName.Length > 22 ? customer.CustomerName.Substring(0, 19) + "..." : customer.CustomerName;
+                    string email = customer.Email.Length > 16 ? customer.Email.Substring(0, 13) + "..." : customer.Email;
+                    string phone = customer.Phone.Length > 16 ? customer.Phone.Substring(0, 13) + "..." : customer.Phone;
+
+                    Console.WriteLine($"│ {customer.CustomerId:D3} │ {customerName,-22} │ {email,-16} │ {phone,-16} │");
+                }
+
+                Console.WriteLine("└─────┴────────────────────────┴──────────────────┴──────────────────┘");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n❌ Error: {ex.Message}");
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// View detailed information about a specific customer
+        /// </summary>
+        private static void ViewCustomerDetails()
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== CUSTOMER DETAILS =====");
+            Console.Write("Enter Customer ID: ");
+
+            if (!int.TryParse(Console.ReadLine(), out int customerId))
+            {
+                Console.WriteLine("❌ Invalid Customer ID");
+                Console.ReadKey();
+                return;
+            }
+
+            try
+            {
+                Customer customer = _customerRepo.GetById(customerId);
+
+                if (customer == null)
+                {
+                    Console.WriteLine($"❌ Customer with ID {customerId} not found");
+                    Console.ReadKey();
+                    return;
+                }
+
+                Console.WriteLine("\n╔════════════════════════════════════╗");
+                Console.WriteLine("║       CUSTOMER INFORMATION         ║");
+                Console.WriteLine("╚════════════════════════════════════╝");
+                Console.WriteLine($"\nCustomer ID: {customer.CustomerId}");
+                Console.WriteLine($"Name: {customer.CustomerName}");
+                Console.WriteLine($"Email: {customer.Email}");
+                Console.WriteLine($"Phone: {customer.Phone}");
+                Console.WriteLine($"Address ID: {customer.AddressId}");
+
+                // Show customer orders
+                List<Order> orders = _orderRepo.GetByCustomer(customerId);
+                Console.WriteLine($"\n────── Orders Placed: {orders.Count} ──────");
+
+                if (orders.Count > 0)
+                {
+                    Console.WriteLine("\n┌──────┬────────────────┬───────────────┐");
+                    Console.WriteLine("│  ID  │   Order Date   │  Total Amount │");
+                    Console.WriteLine("├──────┼────────────────┼───────────────┤");
+
+                    foreach (var order in orders)
+                    {
+                        Console.WriteLine($"│ {order.OrderId:D4} │ {order.OrderDate:yyyy-MM-dd}   │ ${order.TotalAmount:F2,11} │");
+                    }
+
+                    Console.WriteLine("└──────┴────────────────┴───────────────┘");
+                }
+                else
+                {
+                    Console.WriteLine("\nNo orders found for this customer.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"\n❌ Error: {ex.Message}");
+            }
+
+            Console.WriteLine("\nPress any key to continue...");
+            Console.ReadKey();
+        }
+    }
+}

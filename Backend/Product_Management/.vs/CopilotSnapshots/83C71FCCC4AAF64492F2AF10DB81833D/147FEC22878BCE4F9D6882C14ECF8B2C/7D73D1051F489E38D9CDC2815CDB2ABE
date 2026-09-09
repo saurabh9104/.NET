@@ -1,0 +1,154 @@
+﻿using System;
+
+namespace Product_Management
+{
+    class Program
+    {
+        static ProductRepository repository = new ProductRepository();
+
+        static void Main(string[] args)
+        {
+            int choice;
+
+            do
+            {
+                Console.Clear();
+
+                Console.WriteLine("========== PRODUCT MANAGEMENT ==========");
+                Console.WriteLine("0. Test Database Connection");
+                Console.WriteLine("9. List Available Databases (Diagnostic)");
+                Console.WriteLine("1. Add Product");
+                Console.WriteLine("2. Display Products");
+                Console.WriteLine("3. Update Product");
+                Console.WriteLine("4. Delete Product");
+                Console.WriteLine("5. Exit");
+
+                Console.Write("\nEnter Choice : ");
+                if (!int.TryParse(Console.ReadLine(), out choice)) choice = 0;
+
+                switch (choice)
+                {
+                    case 0:
+                        try { TestConnection(); }
+                        catch (Exception ex) { Console.Error.WriteLine("Error testing connection: " + ex.Message); }
+                        break;
+
+                    case 1:
+                        try { AddProduct(); }
+                        catch (Exception ex) { Console.Error.WriteLine("Error adding product: " + ex.Message); }
+                        break;
+
+                    case 2:
+                        try { repository.DisplayProducts(); }
+                        catch (Exception ex) { Console.Error.WriteLine("Error displaying products: " + ex.Message); }
+                        break;
+
+                    case 3:
+                        try { UpdateProduct(); }
+                        catch (Exception ex) { Console.Error.WriteLine("Error updating product: " + ex.Message); }
+                        break;
+
+                    case 4:
+                        try { DeleteProduct(); }
+                        catch (Exception ex) { Console.Error.WriteLine("Error deleting product: " + ex.Message); }
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Thank You...");
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid Choice");
+                        break;
+                }
+
+                if (choice != 5)
+                {
+                    Console.WriteLine("\nPress Any Key...");
+                    Console.ReadKey();
+                }
+
+            } while (choice != 5);
+        }
+
+        static void AddProduct()
+        {
+            var p = new Product();
+
+            Console.Write("Product Name : ");
+            p.ProductName = Console.ReadLine() ?? string.Empty;
+
+            Console.Write("Category Id : ");
+            _ = int.TryParse(Console.ReadLine(), out var cid);
+            p.CategoryId = cid;
+
+            Console.Write("Price : ");
+            _ = decimal.TryParse(Console.ReadLine(), out var price);
+            p.Price = price;
+
+            Console.Write("Quantity : ");
+            _ = int.TryParse(Console.ReadLine(), out var qty);
+            p.Quantity = qty;
+
+            repository.AddProduct(p);
+
+            Console.WriteLine("\nProduct Added Successfully.");
+        }
+
+        static void UpdateProduct()
+        {
+            Console.Write("Enter ProductId to update: ");
+            if (!int.TryParse(Console.ReadLine(), out var id))
+            {
+                Console.WriteLine("Invalid id");
+                return;
+            }
+
+            var p = new Product { ProductId = id };
+            Console.Write("New Name (leave blank to keep): ");
+            var name = Console.ReadLine();
+            if (!string.IsNullOrWhiteSpace(name)) p.ProductName = name;
+
+            Console.Write("New CategoryId (leave blank to keep): ");
+            var catInput = Console.ReadLine();
+            if (int.TryParse(catInput, out var cat)) p.CategoryId = cat;
+
+            Console.Write("New Price (leave blank to keep): ");
+            var priceInput = Console.ReadLine();
+            if (decimal.TryParse(priceInput, out var pr)) p.Price = pr;
+
+            Console.Write("New Quantity (leave blank to keep): ");
+            var qtyInput = Console.ReadLine();
+            if (int.TryParse(qtyInput, out var q)) p.Quantity = q;
+
+            repository.UpdateProduct(p);
+            Console.WriteLine("Product updated (if id existed).");
+        }
+
+        static void DeleteProduct()
+        {
+            Console.Write("Enter ProductId to delete: ");
+            if (!int.TryParse(Console.ReadLine(), out var id))
+            {
+                Console.WriteLine("Invalid id");
+                return;
+            }
+
+            repository.DeleteProduct(id);
+            Console.WriteLine("Product deleted (if id existed).");
+        }
+
+        static void TestConnection()
+        {
+            Console.WriteLine("\n[INFO] Testing database connection...");
+            if (DBHelper.TestConnection())
+            {
+                Console.WriteLine("[SUCCESS] Database connection is working!");
+            }
+            else
+            {
+                Console.WriteLine("[FAILED] Database connection failed. Check the error messages above.");
+            }
+        }
+    }
+}

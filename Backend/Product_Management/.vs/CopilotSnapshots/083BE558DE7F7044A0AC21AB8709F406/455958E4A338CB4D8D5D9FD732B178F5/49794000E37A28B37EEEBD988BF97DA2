@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.Data.SqlClient;
+
+namespace Product_Management
+{
+    public class DB 
+    {
+        private static string connectionString =
+            @"Server=YOUR_SERVER_NAME;
+          Database=ProductDB;
+          Trusted_Connection=True;
+          TrustServerCertificate=True;";
+
+        public static SqlConnection GetConnection()
+        {
+            return new SqlConnection(connectionString);
+        }
+    }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="flowerimage" src="../images/asdfgh.jpg" alt="image" height="400px" width="400px"
+    style="border: 5px solid red">
+    <p id="firstpara">this is my first para </p>
+
+<Script>
+    const changeimage = document.getElementById("flowerimage")
+
+    changeimage.src = "../images/car.jpg";
+    changeimage.alt = "Car Image";
+    const para = document.getElementById("firstpara");
+    para.style.color = "blue";
+    para.style.backgroundColor = "grey";
+    para.style.fontSize = "25px";
+
+    let num1 = 20;
+    let num2 = 10;
+    let add;
+    let sub;
+    let multi;
+    let div;
+
+    add = num1 + num2;
+    console.log("Add=> ",add);
+    sub = num1 - num2;
+    console.log("sub=> ",sub);
+    multi = num1 * num2;
+    console.log("multi=> ",multi);
+    div = num1 / num2;
+    console.log("div=> ",div);
+
+
+</Script>
+
+</body>
+</html>

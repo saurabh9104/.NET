@@ -1,0 +1,50 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class ProductRepository : GenericRepository<Product>, IProductRepository
+    {
+        public ProductRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get products by Category
+        public async Task<IEnumerable<Product>> GetByCategoryAsync(int categoryId)
+        {
+            return await FindAsync(p => p.CategoryId == categoryId);
+        }
+
+        // Get low stock products
+        public async Task<IEnumerable<Product>> GetLowStockProductsAsync()
+        {
+            return await FindAsync(p => p.Quantity <= p.ReorderLevel);
+        }
+
+        // Get product by name
+        public async Task<Product> GetByNameAsync(string productName)
+        {
+            return await FirstOrDefaultAsync(p => p.ProductName == productName);
+        }
+
+        // Update product quantity
+        public async Task<bool> UpdateQuantityAsync(int productId, int quantity)
+        {
+            var product = await GetByIdAsync(productId);
+            if (product == null)
+                return false;
+
+            product.Quantity += quantity;
+            await UpdateAsync(product);
+            return true;
+        }
+
+        // Check if product exists by name
+        public async Task<bool> ProductExistsByNameAsync(string productName)
+        {
+            return await AnyAsync(p => p.ProductName == productName);
+        }
+    }
+}

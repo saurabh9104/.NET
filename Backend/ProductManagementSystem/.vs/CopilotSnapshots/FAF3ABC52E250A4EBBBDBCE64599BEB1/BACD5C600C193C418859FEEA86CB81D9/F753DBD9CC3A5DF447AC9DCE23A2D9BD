@@ -1,0 +1,37 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+    {
+        public CategoryRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get category by name
+        public async Task<Category> GetByNameAsync(string categoryName)
+        {
+            return await FirstOrDefaultAsync(c => c.CategoryName == categoryName);
+        }
+
+        // Check if category exists
+        public async Task<bool> CategoryExistsByNameAsync(string categoryName)
+        {
+            return await AnyAsync(c => c.CategoryName == categoryName);
+        }
+
+        // Update LastUpdate timestamp
+        public async Task<bool> UpdateLastUpdateAsync(int categoryId)
+        {
+            var category = await GetByIdAsync(categoryId);
+            if (category == null)
+                return false;
+
+            category.LastUpdate = System.DateTime.Now;
+            await UpdateAsync(category);
+            return true;
+        }
+    }
+}

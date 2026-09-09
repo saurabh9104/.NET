@@ -1,0 +1,54 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class OrderDetailsRepository : GenericRepository<OrderDetails>, IOrderDetailsRepository
+    {
+        public OrderDetailsRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get OrderDetails by OrderId
+        public async Task<IEnumerable<OrderDetails>> GetByOrderIdAsync(int orderId)
+        {
+            return await FindAsync(od => od.OrderId == orderId);
+        }
+
+        // Get OrderDetails by ProductId
+        public async Task<IEnumerable<OrderDetails>> GetByProductIdAsync(int productId)
+        {
+            return await FindAsync(od => od.ProductId == productId);
+        }
+
+        // Get OrderDetails with related entities
+        public async Task<OrderDetails> GetWithDetailsAsync(int id)
+        {
+            var orderDetail = await _context.OrderDetails
+                .Where(od => od.OrderDetailId == id)
+                .FirstOrDefaultAsync();
+            return orderDetail;
+        }
+
+        // Get all OrderDetails with related entities
+        public async Task<IEnumerable<OrderDetails>> GetAllWithDetailsAsync()
+        {
+            return await _context.OrderDetails.ToListAsync();
+        }
+
+        // Calculate total for an OrderDetail
+        public decimal CalculateLineTotal(OrderDetails orderDetail)
+        {
+            if (orderDetail == null)
+                return 0;
+
+            decimal subtotal = orderDetail.Price * orderDetail.Quantity;
+            decimal discountAmount = (subtotal * orderDetail.Discount) / 100;
+            return subtotal - discountAmount;
+        }
+    }
+}

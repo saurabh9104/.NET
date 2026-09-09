@@ -1,0 +1,109 @@
+﻿using MySql.Data.MySqlClient;
+using Product_Management;
+using System;
+
+public class ProductRepository
+{
+    // Insert
+    public void AddProduct(Product product)
+    {
+        using (MySqlConnection con = DBHelper.GetConnection())
+        {
+            string query = @"INSERT INTO Product
+                            (ProductName,CategoryId,Price,Quantity)
+                            VALUES
+                            (@name,@category,@price,@quantity)";
+
+            MySqlCommand cmd = new MySqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@name", product.ProductName);
+            cmd.Parameters.AddWithValue("@category", product.CategoryId);
+            cmd.Parameters.AddWithValue("@price", product.Price);
+            cmd.Parameters.AddWithValue("@quantity", product.Quantity);
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+    }
+
+    // Display
+    public void DisplayProducts()
+    {
+        using (MySqlConnection con = DBHelper.GetConnection())
+        {
+            string query = @"SELECT
+                            ProductId,
+                            ProductName,
+                            CategoryId,
+                            Price,
+                            Quantity
+                            FROM Product";
+
+            MySqlCommand cmd = new MySqlCommand(query, con);
+
+            con.Open();
+
+            MySqlDataReader reader = cmd.ExecuteReader();
+
+            Console.WriteLine("-----------------------------------------------");
+            Console.WriteLine("ID\tName\tCategory\tPrice\tQty\tTotal");
+            Console.WriteLine("-----------------------------------------------");
+
+            while (reader.Read())
+            {
+                decimal total =
+                    Convert.ToDecimal(reader["Price"]) *
+                    Convert.ToInt32(reader["Quantity"]);
+
+                Console.WriteLine(
+                    $"{reader["ProductId"]}\t" +
+                    $"{reader["ProductName"]}\t" +
+                    $"{reader["CategoryId"]}\t\t" +
+                    $"{reader["Price"]}\t" +
+                    $"{reader["Quantity"]}\t" +
+                    $"{total}");
+            }
+        }
+    }
+
+    // Update
+    public void UpdateProduct(Product product)
+    {
+        using (MySqlConnection con = DBHelper.GetConnection())
+        {
+            string query = @"UPDATE Product
+                            SET ProductName=@name,
+                                CategoryId=@category,
+                                Price=@price,
+                                Quantity=@quantity
+                            WHERE ProductId=@id";
+
+            MySqlCommand cmd = new MySqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@id", product.ProductId);
+            cmd.Parameters.AddWithValue("@name", product.ProductName);
+            cmd.Parameters.AddWithValue("@category", product.CategoryId);
+            cmd.Parameters.AddWithValue("@price", product.Price);
+            cmd.Parameters.AddWithValue("@quantity", product.Quantity);
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+    }
+
+    // Delete
+    public void DeleteProduct(int id)
+    {
+        using (MySqlConnection con = DBHelper.GetConnection())
+        {
+            string query = "DELETE FROM Product WHERE ProductId=@id";
+
+            MySqlCommand cmd = new MySqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@id", id);
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+    }
+}

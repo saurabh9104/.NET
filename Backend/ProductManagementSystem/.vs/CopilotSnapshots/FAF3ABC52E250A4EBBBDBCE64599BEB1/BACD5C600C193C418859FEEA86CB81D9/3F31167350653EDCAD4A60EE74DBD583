@@ -1,0 +1,31 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class RoleRepository : GenericRepository<Role>, IRoleRepository
+    {
+        public RoleRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get role by name
+        public async Task<Role> GetByNameAsync(string roleName)
+        {
+            return await FirstOrDefaultAsync(r => r.RoleName == roleName);
+        }
+
+        // Check if role exists by name
+        public async Task<bool> RoleExistsByNameAsync(string roleName)
+        {
+            return await AnyAsync(r => r.RoleName == roleName);
+        }
+
+        // Get employee count for role
+        public async Task<int> GetRoleEmployeeCountAsync(int roleId)
+        {
+            return await CountAsync(r => r.RoleId == roleId);
+        }
+    }
+}

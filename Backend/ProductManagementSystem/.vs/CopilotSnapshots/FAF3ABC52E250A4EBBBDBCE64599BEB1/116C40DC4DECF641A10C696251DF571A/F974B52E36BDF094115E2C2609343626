@@ -1,0 +1,308 @@
+﻿using System;
+using ProductManagementSystem.Models;
+
+namespace ProductManagementSystem.Menus
+{
+    public class HRMenu
+    {
+        private static EmployeeDetails _currentUser;
+
+        public static void DisplayMenu(EmployeeDetails currentUser)
+        {
+            _currentUser = currentUser;
+            bool isRunning = true;
+
+            while (isRunning)
+            {
+                Console.Clear();
+                Console.WriteLine("\n╔════════════════════════════════════════╗");
+                Console.WriteLine("║         HR MANAGEMENT PANEL            ║");
+                Console.WriteLine("╚════════════════════════════════════════╝");
+                Console.WriteLine($"\n👤 Welcome, {_currentUser.Username} (HR)");
+                Console.WriteLine("═════════════════════════════════════════");
+                Console.WriteLine("\n👥 EMPLOYEE MANAGEMENT");
+                Console.WriteLine("  1. View Employees");
+                Console.WriteLine("  2. Add Employee");
+                Console.WriteLine("  3. Update Employee Information");
+                Console.WriteLine("  4. Employee Directory");
+                Console.WriteLine("\n📋 ATTENDANCE & LEAVE");
+                Console.WriteLine("  5. Attendance Records");
+                Console.WriteLine("  6. Leave Requests");
+                Console.WriteLine("  7. Leave Approvals");
+                Console.WriteLine("  8. Attendance Reports");
+                Console.WriteLine("\n💰 PAYROLL");
+                Console.WriteLine("  9. Salary Management");
+                Console.WriteLine("  10. Payroll Reports");
+                Console.WriteLine("  11. Deductions & Benefits");
+                Console.WriteLine("\n⚡ RECRUITMENT");
+                Console.WriteLine("  12. Job Postings");
+                Console.WriteLine("  13. Applicants");
+                Console.WriteLine("  14. Hiring Pipeline");
+                Console.WriteLine("\n📋 ACCOUNT");
+                Console.WriteLine("  15. View My Profile");
+                Console.WriteLine("  16. Change Password");
+                Console.WriteLine("  17. Logout");
+                Console.WriteLine("\n═════════════════════════════════════════");
+                Console.Write("Select an option (1-17): ");
+
+                string selection = Console.ReadLine();
+
+                switch (selection)
+                {
+                    case "1":
+                        ViewEmployees();
+                        break;
+                    case "2":
+                        AddEmployee();
+                        break;
+                    case "3":
+                        UpdateEmployeeInfo();
+                        break;
+                    case "4":
+                        EmployeeDirectory();
+                        break;
+                    case "5":
+                        AttendanceRecords();
+                        break;
+                    case "6":
+                        LeaveRequests();
+                        break;
+                    case "7":
+                        LeaveApprovals();
+                        break;
+                    case "8":
+                        AttendanceReports();
+                        break;
+                    case "9":
+                        SalaryManagement();
+                        break;
+                    case "10":
+                        PayrollReports();
+                        break;
+                    case "11":
+                        DeductionsAndBenefits();
+                        break;
+                    case "12":
+                        JobPostings();
+                        break;
+                    case "13":
+                        Applicants();
+                        break;
+                    case "14":
+                        HiringPipeline();
+                        break;
+                    case "15":
+                        ViewProfile();
+                        break;
+                    case "16":
+                        ChangePassword();
+                        break;
+                    case "17":
+                        isRunning = false;
+                        Console.WriteLine("\n✅ Logged out successfully.");
+                        break;
+                    default:
+                        Console.WriteLine("❌ Invalid option. Press any key to continue...");
+                        Console.ReadKey();
+                        break;
+                }
+            }
+        }
+
+        private static void ViewEmployees()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- View Employees ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void AddEmployee()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Add Employee ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void UpdateEmployeeInfo()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Update Employee Information ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void EmployeeDirectory()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Employee Directory ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void AttendanceRecords()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Attendance Records ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void LeaveRequests()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Leave Requests ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void LeaveApprovals()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Leave Approvals ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void AttendanceReports()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Attendance Reports ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void SalaryManagement()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Salary Management ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void PayrollReports()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Payroll Reports ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void DeductionsAndBenefits()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Deductions & Benefits ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void JobPostings()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Job Postings ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void Applicants()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Applicants ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void HiringPipeline()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Hiring Pipeline ---");
+            Console.WriteLine("(Features coming soon)");
+            Console.ReadKey();
+        }
+
+        private static void ViewProfile()
+        {
+            Console.Clear();
+            Console.WriteLine("\n╔════════════════════════════════════╗");
+            Console.WriteLine("║          MY PROFILE                ║");
+            Console.WriteLine("╚════════════════════════════════════╝");
+            Console.WriteLine($"\nEmployee ID: {_currentUser.EmployeeId}");
+            Console.WriteLine($"Username: {_currentUser.Username}");
+            Console.WriteLine($"Email: {_currentUser.Email}");
+            Console.WriteLine($"Phone: {_currentUser.Phone}");
+            Console.WriteLine($"Salary: ${_currentUser.Salary}");
+            Console.WriteLine($"Position: HR Specialist");
+            Console.WriteLine($"Date of Birth: {_currentUser.DateOfBirth:yyyy-MM-dd}");
+            Console.WriteLine($"Joining Date: {_currentUser.JoiningDate:yyyy-MM-dd}");
+            Console.WriteLine($"Status: {(_currentUser.Active ? "✅ Active" : "❌ Inactive")}");
+            Console.WriteLine("════════════════════════════════════");
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+
+        private static void ChangePassword()
+        {
+            Console.Clear();
+            Console.WriteLine("\n--- Change Password ---");
+            Console.Write("Current Password: ");
+            string currentPassword = ReadPassword();
+
+            if (currentPassword != _currentUser.Password)
+            {
+                Console.WriteLine("❌ Current password is incorrect.");
+                Console.ReadKey();
+                return;
+            }
+
+            Console.Write("New Password: ");
+            string newPassword = ReadPassword();
+
+            Console.Write("Confirm Password: ");
+            string confirmPassword = ReadPassword();
+
+            if (newPassword != confirmPassword)
+            {
+                Console.WriteLine("❌ Passwords do not match.");
+                Console.ReadKey();
+                return;
+            }
+
+            if (newPassword.Length < 6)
+            {
+                Console.WriteLine("❌ Password must be at least 6 characters long.");
+                Console.ReadKey();
+                return;
+            }
+
+            _currentUser.Password = newPassword;
+            Console.WriteLine("✅ Password changed successfully!");
+            Console.ReadKey();
+        }
+
+        private static string ReadPassword()
+        {
+            string password = "";
+            ConsoleKeyInfo key;
+
+            do
+            {
+                key = Console.ReadKey(true);
+
+                if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+                {
+                    password += key.KeyChar;
+                    Console.Write("*");
+                }
+                else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+                {
+                    password = password.Substring(0, password.Length - 1);
+                    Console.Write("\b \b");
+                }
+            } while (key.Key != ConsoleKey.Enter);
+
+            Console.WriteLine();
+            return password;
+        }
+    }
+}

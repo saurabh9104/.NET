@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using MySql.Data.MySqlClient;
+
+namespace Product_Management
+{
+    public class DBHelper
+    {
+        private static string connectionString = "Server=localhost;Database=dotnet;Uid=root;Pwd=@S123456p;";
+
+        public static MySqlConnection GetOpenConnection()
+        {
+            var connection = new MySqlConnection(connectionString);
+            try
+            {
+                connection.Open();
+                return connection;
+            }
+            catch (MySqlException mex)
+            {
+                connection.Dispose();
+                throw new InvalidOperationException("Failed to open database connection: " + mex.Message, mex);
+            }
+            catch (Exception)
+            {
+                connection.Dispose();
+                throw;
+            }
+        }
+
+        public static void SetConnectionString(string newConnectionString)
+        {
+            if (string.IsNullOrWhiteSpace(newConnectionString))
+                throw new ArgumentException(nameof(newConnectionString));
+
+            // Update the value and clear pools so new connections use it
+            connectionString = newConnectionString;
+            MySqlConnection.ClearAllPools();
+        }
+    }
+}

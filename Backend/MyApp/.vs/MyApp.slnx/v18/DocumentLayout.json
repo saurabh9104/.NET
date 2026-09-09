@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\.NET\\Backend\\MyApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D8495696-776F-DF62-4486-C5C1C6F08BD3}|MyApp\\MyApp.csproj|d:\\.net\\backend\\myapp\\myapp\\stringmanupulation\\q25.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8495696-776F-DF62-4486-C5C1C6F08BD3}|MyApp\\MyApp.csproj|solutionrelative:myapp\\stringmanupulation\\q25.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8495696-776F-DF62-4486-C5C1C6F08BD3}|MyApp\\MyApp.csproj|d:\\.net\\backend\\myapp\\myapp\\stringmanupulation\\q24.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8495696-776F-DF62-4486-C5C1C6F08BD3}|MyApp\\MyApp.csproj|solutionrelative:myapp\\stringmanupulation\\q24.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D8495696-776F-DF62-4486-C5C1C6F08BD3}|MyApp\\MyApp.csproj|d:\\.net\\backend\\myapp\\myapp\\datatype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D8495696-776F-DF62-4486-C5C1C6F08BD3}|MyApp\\MyApp.csproj|solutionrelative:myapp\\datatype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Q25.cs",
+              "DocumentMoniker": "D:\\.NET\\Backend\\MyApp\\MyApp\\StringManupulation\\Q25.cs",
+              "RelativeDocumentMoniker": "MyApp\\StringManupulation\\Q25.cs",
+              "ToolTip": "D:\\.NET\\Backend\\MyApp\\MyApp\\StringManupulation\\Q25.cs*",
+              "RelativeToolTip": "MyApp\\StringManupulation\\Q25.cs*",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAmwAoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-08T06:59:26.688Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Q24.cs",
+              "DocumentMoniker": "D:\\.NET\\Backend\\MyApp\\MyApp\\StringManupulation\\Q24.cs",
+              "RelativeDocumentMoniker": "MyApp\\StringManupulation\\Q24.cs",
+              "ToolTip": "D:\\.NET\\Backend\\MyApp\\MyApp\\StringManupulation\\Q24.cs",
+              "RelativeToolTip": "MyApp\\StringManupulation\\Q24.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-26T08:26:08.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Datatype.cs",
+              "DocumentMoniker": "D:\\.NET\\Backend\\MyApp\\MyApp\\Datatype.cs",
+              "RelativeDocumentMoniker": "MyApp\\Datatype.cs",
+              "ToolTip": "D:\\.NET\\Backend\\MyApp\\MyApp\\Datatype.cs",
+              "RelativeToolTip": "MyApp\\Datatype.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAqwBAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-22T12:45:36.146Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

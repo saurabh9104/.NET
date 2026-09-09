@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mouse event</title>
+</head>
+<body>
+    <div id="box" style="width: 250px; background-color: aqua; border: 2px solid;">this is my simple box</div>
+
+    <script>
+        const box = document.getElementById("box");
+        box.addEventListener("mouseover", function() {
+            box.innerHTML="this is mouseover";
+            box.style.backgroundColor = "red";
+        });
+        box.addEventListener("mouseout", function() {
+            box.innerHTML="this is mouseout";
+            box.style.backgroundColor = "green";
+        });
+        box.addEventListener("click", function() {
+            box.innerHTML="this is on click";
+            box.style.backgroundColor = "yellow";
+        });
+        box.addEventListener("dblclick", function() {
+            box.innerHTML="this is on double click";
+            box.style.backgroundColor = "grey";
+        });
+    </script>
+</body>
+</html>

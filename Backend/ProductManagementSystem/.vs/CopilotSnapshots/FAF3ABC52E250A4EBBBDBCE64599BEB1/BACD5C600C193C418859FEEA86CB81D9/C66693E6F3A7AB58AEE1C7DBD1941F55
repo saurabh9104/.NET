@@ -1,0 +1,31 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class DepartmentRepository : GenericRepository<Department>, IDepartmentRepository
+    {
+        public DepartmentRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get department by name
+        public async Task<Department> GetByNameAsync(string departmentName)
+        {
+            return await FirstOrDefaultAsync(d => d.DepartmentName == departmentName);
+        }
+
+        // Check if department exists by name
+        public async Task<bool> DepartmentExistsByNameAsync(string departmentName)
+        {
+            return await AnyAsync(d => d.DepartmentName == departmentName);
+        }
+
+        // Get employee count in department
+        public async Task<int> GetDepartmentEmployeeCountAsync(int departmentId)
+        {
+            return await CountAsync(d => d.DepartmentId == departmentId);
+        }
+    }
+}

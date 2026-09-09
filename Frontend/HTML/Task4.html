@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal Navigation Bar</title>
+    <style>
+        /* Reset basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+           
+        }
+
+        /* Navigation Bar Container */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0056b3; 
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+            gap: 20px; 
+        }
+
+        .navbar-links a {
+            text-decoration: none;
+            color: #555555;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        
+        <a href="" class="navbar-brand">Brand</a>
+
+        <ul class="navbar-links">
+            <li><a href="">Home</a></li>
+            <li><a href="">Pricing</a></li>
+            <li><a href="">Login</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="submit.html" method="post">
+        <label for="username">username:</label>
+        <!-- <input type="text" id="username" name="username" placeholder="enter username" required> -->
+
+        <!-- <input type="text" id="username" name="username" value="saurabh" disabled> -->
+        <input type="text" id="username" name="username" placeholder="enter username" maxlength="10" minlength="2" pattern="^[A-Za-z]{1,10}$" >
+<!-- 
+        <input type="text" id="username" name="username" placeholder="enter username" required> -->
+        <br><br>
+
+
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="enter email" pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$">
+        <br>
+        <label for="pNo">pNo</label>
+        <input type="text" name="pNo" id="pNo" placeholder="enter phone number"  pattern="[6-9]{1}[0-9]{9}" title="Please enter a valid 10-digit phone number" >
+
+        <br>
+        <label for="dob">date of birth</label>
+        <input type="date" id="dob" name="dob" min="2026-07-05" max="2026-07-10"> <br>
+
+        <label for="gender">gender</label>
+        <input type="radio" id="gender" name="gender" value="male" >
+        <label for="gender">male</label>
+        <input type="radio" id="gender" name="gender" value="female" >
+        <label for="gender">female</label>
+        <br>
+        
+        <label for="hobbies">hobbies</label>
+        <input type="checkbox" name="hobbies" id="reading" value="reading"> reading
+        <input type="checkbox" name="hobbies" id="sports" value="sports"> sports
+        <input type="checkbox" name="hobbies" id="music" value="music"> music
+        <br>
+
+        <label for="age">age</label>
+        <input type="number" id="age" name="age" placeholder="enter age" min="0" max="12" >
+        <br>
+
+        <label for="country">country</label>
+        <select name="country" id="country">
+            <option value="india" selected>India</option>
+            <option value="usa">USA</option>
+            <option value="uk">UK</option>
+        </select>
+        <br>
+
+        <label for="resume">Upload Resume:</label>
+        <br>
+        <input type="file" name="resume" id="resume" accept=".pdf,.doc,.docx">
+        <br>
+
+        <label for="upload">link upload</label>
+        <input type="url" name="upload" id="upload" placeholder="enter link" >
+        <br>
+        <label for="random"></label>
+        <input type="range" name="" id="">
+        <br>
+        <input type="submit" value="submit">
+
+
+
+    </form>
+</body>
+</html>

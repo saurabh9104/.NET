@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <input type="text" id="inputv" placeholder="type anything" style="width: 250px; height: 30px; font-size: 20px;">
+    <p id="demo"></p>
+    <script>
+        const inputv = document.getElementById("inputv");
+        inputv.addEventListener("keydown", function(event) {
+            document.getElementById("demo").innerHTML = "you pressed : " + event.key;
+        });
+        inputv.addEventListener("keyup", function(event) {
+            document.getElementById("demo").innerHTML = "you pressed key: " + event.key;
+        });
+        
+    </script>
+
+
+</body>
+</html>

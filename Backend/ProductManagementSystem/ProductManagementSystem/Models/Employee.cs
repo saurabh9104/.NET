@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ProductManagementSystem.Models
+{
+    public class Employee
+    {
+        public int EmployeeId { get; set; }
+        public string EmployeeName { get; set; }
+        public int DepartmentId { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public int RoleId { get; set; }
+
+        public Department Department { get; set; }
+        public Role Role { get; set; }
+        public EmployeeDetails EmployeeDetails { get; set; }
+        public ICollection<Order> Orders { get; set; }
+        public string? RoleName { get; internal set; }
+
+        public Employee()
+        {
+            Orders = new List<Order>();
+        }
+
+        public Employee(int employeeId, string employeeName, int departmentId, string email, string phone, int roleId)
+        {
+            EmployeeId = employeeId;
+            EmployeeName = employeeName;
+            DepartmentId = departmentId;
+            Email = email;
+            Phone = phone;
+            RoleId = roleId;
+            Orders = new List<Order>();
+        }
+    }
+}

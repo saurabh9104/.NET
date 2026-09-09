@@ -1,0 +1,122 @@
+﻿using System;
+
+namespace MyApp
+{
+    // Basic enum
+    public enum LogLevel
+    {
+        Trace,
+        Debug,
+        Info,
+        Warning,
+        Error,
+        Fatal
+    }
+
+    // Enum with explicit values and underlying type
+    public enum Status : byte
+    {
+        Inactive = 0,
+        Active = 1,
+        Suspended = 2,
+        Deleted = 255
+    }
+
+    // Flags enum for bitwise combinations
+    [Flags]
+    public enum FilePermission
+    {
+        None = 0,
+        Read = 1 << 0,    // 1
+        Write = 1 << 1,   // 2
+        Execute = 1 << 2, // 4
+        ReadWrite = Read | Write
+    }
+
+    public static class EnumExamples
+    {
+        public static void Run()
+        {
+            // Assign and use
+            LogLevel level = LogLevel.Warning;
+            Console.WriteLine(level); // "Warning"
+
+            // Switch on enum
+            switch (level)
+            {
+                case LogLevel.Trace:
+                case LogLevel.Debug:
+                    Console.WriteLine("Verbose");
+                    break;
+                case LogLevel.Info:
+                    Console.WriteLine("Information");
+                    break;
+                case LogLevel.Warning:
+                    Console.WriteLine("Warning");
+                    break;
+                case LogLevel.Error:
+                case LogLevel.Fatal:
+                    Console.WriteLine("Error");
+                    break;
+            }
+
+            // Parse and TryParse
+            if (Enum.TryParse<LogLevel>("Error", ignoreCase: true, out var parsed))
+                Console.WriteLine($"Parsed: {parsed}");
+
+            // Iterate values
+            foreach (LogLevel l in Enum.GetValues(typeof(LogLevel)))
+                Console.WriteLine((int)l + " => " + l);
+
+            // Flags usage
+            FilePermission perms = FilePermission.Read | FilePermission.Write;
+            bool canWrite = (perms & FilePermission.Write) != 0;
+            Console.WriteLine($"CanWrite: {canWrite}");
+
+            // Cast underlying value
+            byte statusValue = (byte)Status.Active;
+            Console.WriteLine($"Status value: {statusValue}");
+        }
+    }
+}
+//using System;
+//using System.Collections.Generic;
+//using System.Runtime.Intrinsics.Arm;
+//using System.Text;
+
+//namespace MyApp
+//{
+//    internal class Datatype
+//    {
+//        static void Main(string[] args)
+//        {
+//            int age = 30;
+//            double salary = 55000.75;
+//            float height = 5.9f;
+//            decimal accountBalance = 150000.55m;
+//            char grade = 'A';
+//            bool isEmployed = true;
+//            string name = "John";
+
+//            Console.WriteLine($"Name: {name}");
+//            Console.WriteLine($"Age: {age}");
+//            Console.WriteLine($"Salary: {salary}");
+//            Console.WriteLine($"Height: {height}");
+//            Console.WriteLine($"Balance: {accountBalance}");
+//            Console.WriteLine($"Grade: {grade}");
+//            Console.WriteLine($"Employed: {isEmployed}");
+
+
+
+//            Console.WriteLine($"byte: {sizeof(byte)}");
+//            Console.WriteLine($"short: {sizeof(short)}");
+//            Console.WriteLine($"int: {sizeof(int)}");
+//            Console.WriteLine($"long: {sizeof(long)}");
+//            Console.WriteLine($"float: {sizeof(float)}");
+//            Console.WriteLine($"double: {sizeof(double)}");
+//            Console.WriteLine($"char: {sizeof(char)}");
+//            Console.WriteLine($"bool: {sizeof(bool)}");
+//            Console.WriteLine($"decimal: {sizeof(decimal)}");
+//        }
+//    }
+//}

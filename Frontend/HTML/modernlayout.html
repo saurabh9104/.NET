@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .boxcw{
+            width: 100%;
+            border: 2px;
+            gap: 10px;
+            display: flex;
+            /*
+            
+            flex-direction: row;
+            */
+
+        }
+        .boxc{
+            height: 100px;
+            width: 33.3%;
+            border: 2px black solid;
+            background-color: cyan;
+            font-size: 20px;   
+        
+        }
+        @media(max-width:480){
+            .boxcw{
+                flex-direction: column;
+            }
+            .boxc{
+                width: 100%;
+                background-color: antiquewhite;
+            }
+        }
+        @media(max-width:390px){
+            .boxcw{
+                flex-direction: column;
+            }
+            .boxc{
+                width: 100%;
+                background-color: aliceblue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="boxcw">
+    <div class="boxc">1</div>
+    <div class="boxc">2</div>
+    <div class="boxc">3</div>
+    <div class="boxc">4</div>
+    </div>
+    <!-- <div class="boxw2">
+    <div class="boxc2">1</div>
+    <div class="boxc2">2</div>
+    <div class="boxc2">3</div>
+    <div class="boxc2">4</div>
+    </div> -->
+</body>
+</html>

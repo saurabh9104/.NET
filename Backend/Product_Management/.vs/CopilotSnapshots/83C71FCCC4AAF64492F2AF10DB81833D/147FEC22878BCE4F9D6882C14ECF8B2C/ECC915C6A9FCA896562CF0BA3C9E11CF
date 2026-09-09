@@ -1,0 +1,122 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using MySql.Data.MySqlClient;
+
+namespace Product_Management
+{
+    public class DBHelper
+    {
+        private static string connectionString =
+            "Server=localhost;Port=3306;Database=dotnet;Uid=root;Pwd=@S123456p;Connection Timeout=30;";
+
+        public static MySqlConnection GetOpenConnection()
+        {
+            MySqlConnection connection = new MySqlConnection(connectionString);
+            try
+            {
+                Console.WriteLine($"[DEBUG] Attempting connection to: Server={ExtractFromConnectionString("Server")}, Database={ExtractFromConnectionString("Database")}");
+                connection.Open();
+                Console.WriteLine("[DEBUG] Connection opened successfully");
+                return connection;
+            }
+            catch (MySqlException ex)
+            {
+                connection?.Dispose();
+                Console.Error.WriteLine($"[ERROR] MySQL Connection Failed");
+                Console.Error.WriteLine($"[ERROR] Error Number: {ex.Number}");
+                Console.Error.WriteLine($"[ERROR] Error Message: {ex.Message}");
+                Console.Error.WriteLine($"[ERROR] Attempted Connection Details:");
+                Console.Error.WriteLine($"[ERROR]   - Server: {ExtractFromConnectionString("Server")}");
+                Console.Error.WriteLine($"[ERROR]   - Port: {ExtractFromConnectionString("Port")}");
+                Console.Error.WriteLine($"[ERROR]   - Database: {ExtractFromConnectionString("Database")}");
+                Console.Error.WriteLine($"[ERROR]   - User: {ExtractFromConnectionString("Uid")}");
+                throw;
+            }
+            catch (Exception ex)
+            {
+                connection?.Dispose();
+                Console.Error.WriteLine($"[ERROR] Unexpected error connecting to database");
+                Console.Error.WriteLine($"[ERROR] Error Type: {ex.GetType().Name}");
+                Console.Error.WriteLine($"[ERROR] Error Message: {ex.Message}");
+                throw;
+            }
+        }
+
+        private static string ExtractFromConnectionString(string key)
+        {
+            try
+            {
+                var parts = connectionString.Split(';');
+                foreach (var part in parts)
+                {
+                    if (part.Contains($"{key}="))
+                    {
+                        return part.Split('=')[1];
+                    }
+                }
+                return "unknown";
+            }
+            catch
+            {
+                return "error parsing";
+            }
+        }
+
+        /// <summary>
+        /// Test the database connection without executing queries
+        /// </summary>
+        public static bool TestConnection()
+        {
+            try
+            {
+                using (var connection = GetOpenConnection())
+                {
+                    Console.WriteLine("[DEBUG] Testing connection successful!");
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"[ERROR] Connection test failed: {ex.Message}");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// List all available databases to help diagnose the issue
+        /// </summary>
+        public static void ListAvailableDatabases()
+        {
+            try
+            {
+                // Connect without specifying database
+                var diagnosticConnection = "Server=localhost;Port=3306;Uid=root;Pwd=@S123456p;Connection Timeout=30;";
+                Console.WriteLine("[DEBUG] Connecting to MySQL server (without specifying database)...");
+
+                using (var conn = new MySqlConnection(diagnosticConnection))
+                {
+                    conn.Open();
+                    Console.WriteLine("[DEBUG] Connected successfully!");
+                    Console.WriteLine("[INFO] Available databases:");
+
+                    string query = "SHOW DATABASES";
+                    using (var cmd = new MySqlCommand(query, conn))
+                    {
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                Console.WriteLine($"       - {reader.GetString(0)}");
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"[ERROR] Failed to list databases: {ex.Message}");
+            }
+        }
+    }
+}

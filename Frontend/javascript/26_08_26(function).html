@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="demo1"></p>
+    <script>
+
+        let a =1;
+        let b =2;
+
+        function hello(){
+            return "hello world";
+        }
+        function multiply(a , b){
+            const value = a * b;
+            return value;
+        }
+        let value = hello();
+        let value2 = multiply(a ,b);
+        const demo = document.getElementById("demo");
+        const demo1 = document.getElementById("demo1");
+        demo.innerHTML = value;
+        demo1.innerHTML = value2;
+    </script>
+</body>
+</html>

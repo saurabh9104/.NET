@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        //let month = 1;
+        //let date = new Date().getDay();
+
+        //switch(month){
+        //    case 1: 
+        //        day = "January";
+        //        break;
+        //    case 2:
+        //        day = "February";
+        //        break;
+        //    case 3:
+        //        day = "march";
+        //       break;
+        //  case 4:
+        //      day = "april";
+        //        break;
+        //  case 5:
+        //        day = "may";
+        //        break;
+        //    case 6:
+        //        day = "june";
+        //        break;
+        //    case 7:
+        //        day = "july";
+        //        break;
+        //    case 8:
+        //        day = "august";
+        //        break;
+        //    case 9:
+        //        day = "september";
+        //        break;
+        //    case 10:
+        //        day = "october";
+        //        break;
+        //    case 11:
+        //        day = "november";
+        //        break;
+        //    case 12:
+        //        day = "december";
+        //        break;
+        //    default:
+        //        day = "not found";
+        //}
+
+        let num1 = 1;
+        let num2 = 2;
+        let operator;
+        let total;
+
+        switch(operator){
+            case 1:
+                total = num1 + num2;
+                break;
+            case 2:
+                total = num1 - num2;
+                break;
+            case 3:
+                total = num1 * num2;
+                break;
+            case 4:
+                total = num1 / num2;
+                break;
+            default:
+                text = "not found";
+        }
+
+        document.getElementById("demo").innerHTML = "Today is " + total;
+    </script>
+</body>

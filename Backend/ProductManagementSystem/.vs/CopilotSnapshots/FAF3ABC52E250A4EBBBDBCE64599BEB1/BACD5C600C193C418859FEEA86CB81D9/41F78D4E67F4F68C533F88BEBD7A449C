@@ -1,0 +1,37 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class EmployeeDetailsRepository : GenericRepository<EmployeeDetails>, IEmployeeDetailsRepository
+    {
+        public EmployeeDetailsRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get employee details by employee id
+        public async Task<EmployeeDetails> GetByEmployeeIdAsync(int employeeId)
+        {
+            return await FirstOrDefaultAsync(ed => ed.EmployeeId == employeeId);
+        }
+
+        // Get employee details by username
+        public async Task<EmployeeDetails> GetByUsernameAsync(string username)
+        {
+            return await FirstOrDefaultAsync(ed => ed.Username == username);
+        }
+
+        // Check if username exists
+        public async Task<bool> UsernameExistsAsync(string username)
+        {
+            return await AnyAsync(ed => ed.Username == username);
+        }
+
+        // Get active employee count
+        public async Task<int> GetActiveEmployeeCountAsync()
+        {
+            return await CountAsync(ed => ed.Active);
+        }
+    }
+}

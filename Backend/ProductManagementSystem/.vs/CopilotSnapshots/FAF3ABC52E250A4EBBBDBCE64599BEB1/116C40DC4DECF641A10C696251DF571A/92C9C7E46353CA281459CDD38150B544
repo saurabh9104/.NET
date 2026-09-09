@@ -1,0 +1,237 @@
+﻿using System;
+using ProductManagementSystem.Models;
+using ProductManagementSystem.Services;
+using ProductManagementSystem.Utilities;
+
+class Program
+{
+    private static LoginService _loginService = new LoginService();
+    private static EmployeeDetails _currentUser = null;
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("========================================");
+        Console.WriteLine("  Product Management System");
+        Console.WriteLine("========================================\n");
+
+        // Check database connection
+        if (!DBHelper.TestConnection())
+        {
+            Console.WriteLine("❌ Error: Cannot connect to database.");
+            Console.WriteLine("Please check your connection string in DBHelper.cs");
+            return;
+        }
+
+        Console.WriteLine("✅ Database connection successful.\n");
+
+        // Login loop
+        while (_currentUser == null)
+        {
+            DisplayLoginMenu();
+        }
+
+        // Main menu after login
+        MainMenu();
+    }
+
+    /// <summary>
+    /// Displays login menu and handles authentication
+    /// </summary>
+    static void DisplayLoginMenu()
+    {
+        Console.WriteLine("========== LOGIN ==========");
+        Console.Write("Username: ");
+        string username = Console.ReadLine();
+
+        Console.Write("Password: ");
+        string password = ReadPassword();
+
+        _currentUser = _loginService.Authenticate(username, password);
+
+        if (_currentUser != null)
+        {
+            Console.WriteLine($"\n✅ Login successful! Welcome, {username}\n");
+        }
+        else
+        {
+            Console.WriteLine("\n❌ Login failed. Please try again.\n");
+        }
+    }
+
+    /// <summary>
+    /// Reads password without displaying it
+    /// </summary>
+    static string ReadPassword()
+    {
+        string password = "";
+        ConsoleKeyInfo key;
+
+        do
+        {
+            key = Console.ReadKey(true);
+
+            if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+            {
+                password += key.KeyChar;
+                Console.Write("*");
+            }
+            else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+            {
+                password = password.Substring(0, password.Length - 1);
+                Console.Write("\b \b");
+            }
+        } while (key.Key != ConsoleKey.Enter);
+
+        Console.WriteLine();
+        return password;
+    }
+
+    /// <summary>
+    /// Main application menu
+    /// </summary>
+    static void MainMenu()
+    {
+        bool isRunning = true;
+
+        while (isRunning)
+        {
+            Console.WriteLine("\n========== MAIN MENU ==========");
+            Console.WriteLine($"Logged in as: {_currentUser.Username} (Role ID: {_currentUser.RoleId})");
+            Console.WriteLine("================================");
+            Console.WriteLine("1. Employee Management");
+            Console.WriteLine("2. Product Management");
+            Console.WriteLine("3. Order Management");
+            Console.WriteLine("4. Customer Management");
+            Console.WriteLine("5. View My Profile");
+            Console.WriteLine("6. Change Password");
+            Console.WriteLine("7. Logout");
+            Console.WriteLine("================================");
+            Console.Write("Select an option (1-7): ");
+
+            string selection = Console.ReadLine();
+
+            switch (selection)
+            {
+                case "1":
+                    EmployeeManagementMenu();
+                    break;
+                case "2":
+                    ProductManagementMenu();
+                    break;
+                case "3":
+                    OrderManagementMenu();
+                    break;
+                case "4":
+                    CustomerManagementMenu();
+                    break;
+                case "5":
+                    ViewProfile();
+                    break;
+                case "6":
+                    ChangePassword();
+                    break;
+                case "7":
+                    Logout();
+                    isRunning = false;
+                    break;
+                default:
+                    Console.WriteLine("❌ Invalid option. Please try again.");
+                    break;
+            }
+        }
+    }
+
+    static void EmployeeManagementMenu()
+    {
+        Console.WriteLine("\n--- Employee Management ---");
+        Console.WriteLine("1. Add Employee");
+        Console.WriteLine("2. View Employees");
+        Console.WriteLine("3. Update Employee");
+        Console.WriteLine("4. Delete Employee");
+        Console.WriteLine("(Features coming soon)");
+    }
+
+    static void ProductManagementMenu()
+    {
+        Console.WriteLine("\n--- Product Management ---");
+        Console.WriteLine("1. Add Product");
+        Console.WriteLine("2. View Products");
+        Console.WriteLine("3. Update Product");
+        Console.WriteLine("4. Delete Product");
+        Console.WriteLine("(Features coming soon)");
+    }
+
+    static void OrderManagementMenu()
+    {
+        Console.WriteLine("\n--- Order Management ---");
+        Console.WriteLine("1. Create Order");
+        Console.WriteLine("2. View Orders");
+        Console.WriteLine("3. Update Order Status");
+        Console.WriteLine("4. View Order Details");
+        Console.WriteLine("(Features coming soon)");
+    }
+
+    static void CustomerManagementMenu()
+    {
+        Console.WriteLine("\n--- Customer Management ---");
+        Console.WriteLine("1. Add Customer");
+        Console.WriteLine("2. View Customers");
+        Console.WriteLine("3. Update Customer");
+        Console.WriteLine("4. Delete Customer");
+        Console.WriteLine("(Features coming soon)");
+    }
+
+    static void ViewProfile()
+    {
+        Console.WriteLine("\n========== MY PROFILE ==========");
+        Console.WriteLine($"Employee ID: {_currentUser.EmployeeId}");
+        Console.WriteLine($"Username: {_currentUser.Username}");
+        Console.WriteLine($"Email: {_currentUser.Email}");
+        Console.WriteLine($"Phone: {_currentUser.Phone}");
+        Console.WriteLine($"Salary: ${_currentUser.Salary}");
+        Console.WriteLine($"Date of Birth: {_currentUser.DateOfBirth:yyyy-MM-dd}");
+        Console.WriteLine($"Joining Date: {_currentUser.JoiningDate:yyyy-MM-dd}");
+        Console.WriteLine($"Status: {(_currentUser.Active ? "Active" : "Inactive")}");
+        Console.WriteLine("================================");
+    }
+
+    static void ChangePassword()
+    {
+        Console.WriteLine("\n--- Change Password ---");
+        Console.Write("Current Password: ");
+        string currentPassword = ReadPassword();
+
+        if (currentPassword != _currentUser.Password)
+        {
+            Console.WriteLine("❌ Current password is incorrect.");
+            return;
+        }
+
+        Console.Write("New Password: ");
+        string newPassword = ReadPassword();
+
+        Console.Write("Confirm Password: ");
+        string confirmPassword = ReadPassword();
+
+        if (newPassword != confirmPassword)
+        {
+            Console.WriteLine("❌ Passwords do not match.");
+            return;
+        }
+
+        if (newPassword.Length < 6)
+        {
+            Console.WriteLine("❌ Password must be at least 6 characters long.");
+            return;
+        }
+
+        _currentUser.Password = newPassword;
+        Console.WriteLine("✅ Password changed successfully!");
+    }
+
+    static void Logout()
+    {
+        Console.WriteLine("\n✅ Logged out successfully.");
+        _currentUser = null;
+    }
+}

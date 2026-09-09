@@ -1,0 +1,69 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class OrderRepository : GenericRepository<Order>, IOrderRepository
+    {
+        public OrderRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get orders by Customer
+        public async Task<IEnumerable<Order>> GetByCustomerAsync(int customerId)
+        {
+            return await FindAsync(o => o.CustomerId == customerId);
+        }
+
+        // Get orders by Employee
+        public async Task<IEnumerable<Order>> GetByEmployeeAsync(int employeeId)
+        {
+            return await FindAsync(o => o.EmployeeId == employeeId);
+        }
+
+        // Get orders by status
+        public async Task<IEnumerable<Order>> GetByStatusAsync(string status)
+        {
+            return await FindAsync(o => o.Status == status);
+        }
+
+        // Get orders by date range
+        public async Task<IEnumerable<Order>> GetByDateRangeAsync(DateTime startDate, DateTime endDate)
+        {
+            return await FindAsync(o => o.OrderDate >= startDate && o.OrderDate <= endDate);
+        }
+
+        // Get pending orders
+        public async Task<IEnumerable<Order>> GetPendingOrdersAsync()
+        {
+            return await FindAsync(o => o.Status == "Pending" || o.Status == "Processing");
+        }
+
+        // Get completed orders
+        public async Task<IEnumerable<Order>> GetCompletedOrdersAsync()
+        {
+            return await FindAsync(o => o.Status == "Completed" || o.Status == "Delivered");
+        }
+
+        // Update order status
+        public async Task<bool> UpdateOrderStatusAsync(int orderId, string status)
+        {
+            var order = await GetByIdAsync(orderId);
+            if (order == null)
+                return false;
+
+            order.Status = status;
+            await UpdateAsync(order);
+            return true;
+        }
+
+        // Calculate total orders for customer
+        public async Task<int> GetCustomerOrderCountAsync(int customerId)
+        {
+            return await CountAsync(o => o.CustomerId == customerId);
+        }
+    }
+}

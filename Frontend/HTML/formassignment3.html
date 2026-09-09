@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label for="username">username:</label>
+    <input type="text" id="username" name="username" placeholder="enter username" maxlength="10" minlength="2" pattern="^[A-Za-z]{1,10}$" >
+     <br><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" id="password" placeholder="Enter your Password" min="8" max="16" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$" required>
+    <br><br>
+    <label for="city of employment">city of employment</label>
+    <input type="text" name="city of employment" id="city of employment" placeholder="Enter city" >
+    <br><br>
+    <div class="input">
+    <label for="please specify role">please specify role</label>
+    <div class=""><input type="radio" id="role" name="role" value="admin" >admin</div>
+    <div class=""><input type="radio" id="role" name="role" value="engineer" >Engineer</div>
+    <div class=""><input type="radio" id="role" name="role" value="manager" >Manager</div>
+    <div class=""><input type="radio" id="role" name="role" value="guest" >Guest</div>
+    </div>
+    <br><br>
+    <label for="web">web server</label>
+    <select name="web" id="web" >
+        <option value="server0" aria-placeholder="web server">Server 0</option>
+        <option value="server1">Server 1</option>
+        <option value="server2">Server 2</option>
+        <option value="server3">Server 3</option>
+    </select>
+    <div class="input">
+    <label for="sign on with following">sign on with folllowing</label>
+    <div class=""><input type="checkbox" name="signon" id="signon">Mail</div>
+    <div class=""><input type="checkbox" name="signon" id="signon">payroll</div>
+    <div class=""><input type="checkbox" name="signon" id="signon">self service</div>
+    </div>
+    <br><br>
+
+    <input type="submit" value="Login">
+    <input type="reset" value="reset">
+    
+</body>
+</html>

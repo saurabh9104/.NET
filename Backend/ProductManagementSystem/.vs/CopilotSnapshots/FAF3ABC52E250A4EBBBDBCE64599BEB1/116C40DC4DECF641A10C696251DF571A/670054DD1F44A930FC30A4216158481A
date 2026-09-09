@@ -1,0 +1,67 @@
+﻿using System;
+using ProductManagementSystem.Models;
+using ProductManagementSystem.Services;
+using ProductManagementSystem.Utilities;
+using ProductManagementSystem.Menus;
+
+class Program
+{
+    private static LoginService _loginService = new LoginService();
+    private static EmployeeDetails _currentUser = null;
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("========================================");
+        Console.WriteLine("  Product Management System");
+        Console.WriteLine("========================================\n");
+
+        // Check database connection
+        if (!DBHelper.TestConnection())
+        {
+            Console.WriteLine("❌ Error: Cannot connect to database.");
+            Console.WriteLine("Please check your connection string in DBHelper.cs");
+            return;
+        }
+
+        Console.WriteLine("✅ Database connection successful.\n");
+
+        // Login loop
+        while (_currentUser == null)
+        {
+            DisplayLoginMenu();
+        }
+
+        // Display role-based menu after login
+        MenuRouter.DisplayMenuByRole(_currentUser.RoleId, _currentUser);
+
+        // After logout, reset user
+        _currentUser = null;
+        Console.WriteLine("\nThank you for using Product Management System!");
+    }
+
+    /// <summary>
+    /// Displays login menu and handles authentication
+    /// </summary>
+    static void DisplayLoginMenu()
+    {
+        Console.WriteLine("========== LOGIN ==========");
+        Console.Write("Username: ");
+        string username = Console.ReadLine();
+
+        Console.Write("Password: ");
+        string password = MenuHelper.ReadPassword();
+
+        _currentUser = _loginService.Authenticate(username, password);
+
+        if (_currentUser != null)
+        {
+            string roleName = MenuRouter.GetRoleName(_currentUser.RoleId);
+            Console.WriteLine($"\n✅ Login successful! Welcome, {username} ({roleName})\n");
+            System.Threading.Thread.Sleep(1500);
+        }
+        else
+        {
+            Console.WriteLine("\n❌ Login failed. Please try again.\n");
+        }
+    }
+}

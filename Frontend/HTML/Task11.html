@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Navigation Bar</title>
+
+    <style>
+        /* Reset basic styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+
+            /* Space for fixed navbar */
+            padding-top: 70px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background-color: #ffffff;
+            padding: 15px 30px;
+
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-size: 24px;
+            font-weight: bold;
+            color: #0056b3;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        .content {
+            padding: 30px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Fixed Navbar -->
+    <nav class="navbar">
+
+        <a href="" class="navbar-brand">Brand</a>
+
+        <ul class="navbar-links">
+            <li><a href="">Home</a></li>
+            <li><a href="">Pricing</a></li>
+            <li><a href="">Login</a></li>
+        </ul>
+
+    </nav>
+
+    <div class="content">
+
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Omnis nostrum corrupti accusamus voluptatibus. Quos, ab aspernatur!
+            Maxime qui dignissimos deleniti id! Eveniet praesentium debitis
+            tempore! Minima sint porro consequatur laborum ex, mollitia maiores
+            corporis repudiandae velit possimus laudantium consectetur temporibus
+            alias nesciunt quos id praesentium recusandae nobis odio eveniet
+            voluptate unde totam cupiditate accusamus! Vel eligendi maiores
+            aperiam beatae quod ipsam, fuga reiciendis! Voluptatem veniam
+            necessitatibus modi. Dicta a quibusdam, rerum id cupiditate eligendi
+            non corporis perspiciatis voluptatibus magnam.
+        </p>
+
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptate maiores dolorem corrupti maxime dicta quisquam,
+            repellendus doloribus exercitationem ducimus, tenetur possimus
+            dolorum porro numquam explicabo. Consequatur incidunt sed
+            consequuntur qui mollitia. Commodi quo nihil aperiam et magnam
+            iure repudiandae rem dolor, dolorum perspiciatis tempora,
+            corporis reprehenderit.
+        </p>
+
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Quasi accusamus hic molestiae aliquid, expedita nisi, molestias
+            possimus maxime enim dignissimos iste, velit vero in doloribus
+            reiciendis.
+        </p>
+
+    </div>
+
+</body>
+</html>

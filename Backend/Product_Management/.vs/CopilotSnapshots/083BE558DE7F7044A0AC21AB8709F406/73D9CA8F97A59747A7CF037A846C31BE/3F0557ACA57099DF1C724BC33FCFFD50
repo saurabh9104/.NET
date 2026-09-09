@@ -1,0 +1,79 @@
+﻿using System;
+using MySql.Data.MySqlClient;
+
+namespace Product_Management
+{
+    public class ProductRepository
+    {
+        // Insert
+        public void AddProduct(Product product)
+        {
+            using var con = DBHelper.GetOpenConnection();
+            var query = @"INSERT INTO Product
+                            (ProductName,CategoryId,Price,Quantity,Total)
+                            VALUES
+                            (@name,@category,@price,@quantity,@total)";
+
+            using var cmd = new MySqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@name", product.ProductName ?? string.Empty);
+            cmd.Parameters.AddWithValue("@category", product.CategoryId);
+            cmd.Parameters.AddWithValue("@price", product.Price);
+            cmd.Parameters.AddWithValue("@quantity", product.Quantity);
+            cmd.Parameters.AddWithValue("@total", product.Price * product.Quantity);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        // Display
+        public void DisplayProducts()
+        {
+            using var con = DBHelper.GetOpenConnection();
+            var query = @"SELECT ProductId, ProductName, CategoryId, Price, Quantity, Total FROM Product";
+            using var cmd = new MySqlCommand(query, con);
+            using var reader = cmd.ExecuteReader();
+
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine("ID\tName\tCategory\tPrice\tQty\tTotal");
+            Console.WriteLine("---------------------------------------------------------------");
+
+            while (reader.Read())
+            {
+                var total = reader.IsDBNull(5) ? 0m : reader.GetDecimal(5);
+                Console.WriteLine($"{reader.GetInt32(0)}\t{reader.GetString(1)}\t{reader.GetInt32(2)}\t{reader.GetDecimal(3)}\t{reader.GetInt32(4)}\t{total}");
+            }
+        }
+
+        // Update
+        public void UpdateProduct(Product product)
+        {
+            using var con = DBHelper.GetOpenConnection();
+            var query = @"UPDATE Product
+                            SET ProductName=@name,
+                                CategoryId=@category,
+                                Price=@price,
+                                Quantity=@quantity,
+                                Total=@total
+                            WHERE ProductId=@id";
+
+            using var cmd = new MySqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@id", product.ProductId);
+            cmd.Parameters.AddWithValue("@name", product.ProductName ?? string.Empty);
+            cmd.Parameters.AddWithValue("@category", product.CategoryId);
+            cmd.Parameters.AddWithValue("@price", product.Price);
+            cmd.Parameters.AddWithValue("@quantity", product.Quantity);
+            cmd.Parameters.AddWithValue("@total", product.Price * product.Quantity);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        // Delete
+        public void DeleteProduct(int id)
+        {
+            using var con = DBHelper.GetOpenConnection();
+            var query = "DELETE FROM Product WHERE ProductId=@id";
+            using var cmd = new MySqlCommand(query, con);
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.ExecuteNonQuery();
+        }
+    }
+}

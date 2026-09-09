@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="firstpara"></p>
+    <script>
+        let age =19;
+        let text = "you can drive";
+
+        if (age < 18) {
+            text = "you cannot drive";
+        }else if (age === 18) {
+            text = "you just got the right age to drive";
+        } else {
+            text = "you can drive";
+        }
+
+        const display = document.getElementById("firstpara");
+        display.innerHTML = text;
+        console.log(display);
+
+    </script>
+</body>
+</html>

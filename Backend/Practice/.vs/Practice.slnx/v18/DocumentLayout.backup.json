@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\.NET\\Backend\\Practice\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{88CBA8FA-318D-42FE-98D9-61D47246972E}|Practice\\Practice.csproj|d:\\.net\\backend\\practice\\practice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{88CBA8FA-318D-42FE-98D9-61D47246972E}|Practice\\Practice.csproj|solutionrelative:practice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{88CBA8FA-318D-42FE-98D9-61D47246972E}|Practice\\Practice.csproj|d:\\.net\\backend\\practice\\practice\\practice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{88CBA8FA-318D-42FE-98D9-61D47246972E}|Practice\\Practice.csproj|solutionrelative:practice\\practice.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Practice",
+              "DocumentMoniker": "D:\\.NET\\Backend\\Practice\\Practice\\Practice.csproj",
+              "RelativeDocumentMoniker": "Practice\\Practice.csproj",
+              "ToolTip": "D:\\.NET\\Backend\\Practice\\Practice\\Practice.csproj",
+              "RelativeToolTip": "Practice\\Practice.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-08-24T06:54:43.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\.NET\\Backend\\Practice\\Practice\\Program.cs",
+              "RelativeDocumentMoniker": "Practice\\Program.cs",
+              "ToolTip": "D:\\.NET\\Backend\\Practice\\Practice\\Program.cs*",
+              "RelativeToolTip": "Practice\\Program.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-14T06:42:06.146Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

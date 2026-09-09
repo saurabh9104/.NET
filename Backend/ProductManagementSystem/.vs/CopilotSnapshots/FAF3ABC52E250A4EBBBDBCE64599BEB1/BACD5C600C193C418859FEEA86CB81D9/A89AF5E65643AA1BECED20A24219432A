@@ -1,0 +1,31 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class AddressRepository : GenericRepository<Address>, IAddressRepository
+    {
+        public AddressRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get address by city
+        public async Task<Address> GetByCityAsync(string city)
+        {
+            return await FirstOrDefaultAsync(a => a.City == city);
+        }
+
+        // Get address by country
+        public async Task<Address> GetByCountryAsync(string country)
+        {
+            return await FirstOrDefaultAsync(a => a.Country == country);
+        }
+
+        // Get customer count for address
+        public async Task<int> GetAddressCustomerCountAsync(int addressId)
+        {
+            return await CountAsync(a => a.AddressId == addressId);
+        }
+    }
+}

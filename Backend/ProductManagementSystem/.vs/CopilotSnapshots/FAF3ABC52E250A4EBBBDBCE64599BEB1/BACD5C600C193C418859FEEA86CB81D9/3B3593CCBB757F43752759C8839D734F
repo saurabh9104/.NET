@@ -1,0 +1,62 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class CustomerRepository : GenericRepository<Customer>, ICustomerRepository
+    {
+        public CustomerRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get customer by email
+        public async Task<Customer> GetByEmailAsync(string email)
+        {
+            return await FirstOrDefaultAsync(c => c.Email == email);
+        }
+
+        // Get customer by name
+        public async Task<IEnumerable<Customer>> GetByNameAsync(string customerName)
+        {
+            return await FindAsync(c => c.CustomerName.Contains(customerName));
+        }
+
+        // Get customers by city
+        public async Task<IEnumerable<Customer>> GetByCityAsync(string city)
+        {
+            return await FindAsync(c => c.Address.City == city);
+        }
+
+        // Get customers by country
+        public async Task<IEnumerable<Customer>> GetByCountryAsync(string country)
+        {
+            return await FindAsync(c => c.Address.Country == country);
+        }
+
+        // Check if customer exists by email
+        public async Task<bool> CustomerExistsByEmailAsync(string email)
+        {
+            return await AnyAsync(c => c.Email == email);
+        }
+
+        // Get customer by phone
+        public async Task<Customer> GetByPhoneAsync(string phone)
+        {
+            return await FirstOrDefaultAsync(c => c.Phone == phone);
+        }
+
+        // Get total customers
+        public async Task<int> GetTotalCustomersAsync()
+        {
+            return await CountAsync();
+        }
+
+        // Get customers with orders
+        public async Task<IEnumerable<Customer>> GetCustomersWithOrdersAsync()
+        {
+            return await FindAsync(c => c.Orders.Count > 0);
+        }
+    }
+}

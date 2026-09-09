@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Product_Management
+{
+    internal class Product
+    {
+        int ProductID;
+        string ProductName;
+        String Category;
+        double Price;
+        double Quantity;
+
+        public Product(int productID, string productName, string category, double price, double quantity)
+        {
+            ProductID = productID;
+            ProductName = productName;
+            Category = category;
+            Price = price;
+            Quantity = quantity;
+        }
+
+        public int GetProductID()
+        {
+            return ProductID;
+        }
+        public string GetProductName()
+        {
+            return ProductName;
+        }
+        public string GetCategory()
+        {
+            return Category;
+        }
+        public double GetPrice()
+        {
+            return Price;
+        }
+        public double GetQuantity() {
+            return Quantity;
+        }
+        public void SetProductID(int productID)
+        {
+            ProductID = productID;
+        }
+        public void SetProductName(string productName)
+        {
+            ProductName = productName;
+        }
+        public void SetCategory(string category)
+        {
+            Category = category;
+        }
+        public void SetPrice(double price)
+        {
+            Price = price;
+        }
+        public void SetQuantity(double quantity)
+        {
+            Quantity = quantity;
+        }
+
+    }
+}

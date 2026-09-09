@@ -1,0 +1,481 @@
+﻿using System;
+using ProductManagementSystem.Models;
+using ProductManagementSystem.Services;
+using ProductManagementSystem.Utilities;
+
+class Program
+{
+    private static LoginService _loginService = new LoginService();
+    private static EmployeeDetails _currentUser = null;
+
+    static void Main(string[] args)
+    {
+        Console.WriteLine("========================================");
+        Console.WriteLine("  Product Management System");
+        Console.WriteLine("========================================\n");
+
+        // Check database connection
+        if (!DBHelper.TestConnection())
+        {
+            Console.WriteLine("❌ Error: Cannot connect to database.");
+            Console.WriteLine("Please check your connection string in DBHelper.cs");
+            return;
+        }
+
+        Console.WriteLine("✅ Database connection successful.\n");
+
+        // Login loop
+        while (_currentUser == null)
+        {
+            DisplayLoginMenu();
+        }
+
+        // Display menu based on role
+        DisplayRoleBasedMenu();
+
+        Console.WriteLine("\nThank you for using Product Management System!");
+    }
+
+    /// <summary>
+    /// Displays login menu and handles authentication
+    /// </summary>
+    static void DisplayLoginMenu()
+    {
+        Console.WriteLine("========== LOGIN ==========");
+        Console.Write("Username: ");
+        string username = Console.ReadLine();
+
+        Console.Write("Password: ");
+        string password = ReadPassword();
+
+        _currentUser = _loginService.Authenticate(username, password);
+
+        if (_currentUser != null)
+        {
+            Console.WriteLine($"\n✅ Login successful! Welcome, {username}\n");
+            System.Threading.Thread.Sleep(1000);
+        }
+        else
+        {
+            Console.WriteLine("\n❌ Login failed. Please try again.\n");
+        }
+    }
+
+    /// <summary>
+    /// Routes to menu based on user role
+    /// </summary>
+    static void DisplayRoleBasedMenu()
+    {
+        // RoleId: 1 = Admin, 2 = Manager, 6 = Employee
+        switch (_currentUser.RoleId)
+        {
+            case 1:
+                AdminMenu();
+                break;
+            case 2:
+                ManagerMenu();
+                break;
+            default:
+                EmployeeMenu();
+                break;
+        }
+    }
+
+    /// <summary>
+    /// Reads password without displaying it
+    /// </summary>
+    static string ReadPassword()
+    {
+        string password = "";
+        ConsoleKeyInfo key;
+
+        do
+        {
+            key = Console.ReadKey(true);
+
+            if (key.Key != ConsoleKey.Backspace && key.Key != ConsoleKey.Enter)
+            {
+                password += key.KeyChar;
+                Console.Write("*");
+            }
+            else if (key.Key == ConsoleKey.Backspace && password.Length > 0)
+            {
+                password = password.Substring(0, password.Length - 1);
+                Console.Write("\b \b");
+            }
+        } while (key.Key != ConsoleKey.Enter);
+
+        Console.WriteLine();
+        return password;
+    }
+
+    // ===================== ADMIN MENU =====================
+    static void AdminMenu()
+    {
+        bool isRunning = true;
+
+        while (isRunning)
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== ADMIN MENU =====");
+            Console.WriteLine("1. Employee");
+            Console.WriteLine("2. Department");
+            Console.WriteLine("3. Role");
+            Console.WriteLine("4. Category");
+            Console.WriteLine("5. Product");
+            Console.WriteLine("6. Customer");
+            Console.WriteLine("7. Orders");
+            Console.WriteLine("8. Logout");
+            Console.WriteLine("======================");
+            Console.Write("Select an option (1-8): ");
+
+            string selection = Console.ReadLine();
+
+            switch (selection)
+            {
+                case "1":
+                    EmployeeManagement();
+                    break;
+                case "2":
+                    DepartmentManagement();
+                    break;
+                case "3":
+                    RoleManagement();
+                    break;
+                case "4":
+                    CategoryManagement();
+                    break;
+                case "5":
+                    ProductManagement();
+                    break;
+                case "6":
+                    CustomerManagement();
+                    break;
+                case "7":
+                    OrdersManagement();
+                    break;
+                case "8":
+                    isRunning = false;
+                    Console.WriteLine("\n✅ Logged out successfully.");
+                    break;
+                default:
+                    Console.WriteLine("❌ Invalid option. Press any key to continue...");
+                    Console.ReadKey();
+                    break;
+            }
+        }
+    }
+
+    static void EmployeeManagement()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== EMPLOYEE MANAGEMENT =====");
+        Console.WriteLine("1. View All Employees");
+        Console.WriteLine("2. Add Employee");
+        Console.WriteLine("3. Update Employee");
+        Console.WriteLine("4. Delete Employee");
+        Console.WriteLine("5. Search Employee");
+        Console.WriteLine("6. Back to Main Menu");
+        Console.WriteLine("================================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void DepartmentManagement()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== DEPARTMENT MANAGEMENT =====");
+        Console.WriteLine("1. View All Departments");
+        Console.WriteLine("2. Add Department");
+        Console.WriteLine("3. Update Department");
+        Console.WriteLine("4. Delete Department");
+        Console.WriteLine("5. Back to Main Menu");
+        Console.WriteLine("==================================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void RoleManagement()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== ROLE MANAGEMENT =====");
+        Console.WriteLine("1. View All Roles");
+        Console.WriteLine("2. Add Role");
+        Console.WriteLine("3. Update Role");
+        Console.WriteLine("4. Delete Role");
+        Console.WriteLine("5. Back to Main Menu");
+        Console.WriteLine("============================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void CategoryManagement()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== CATEGORY MANAGEMENT =====");
+        Console.WriteLine("1. View All Categories");
+        Console.WriteLine("2. Add Category");
+        Console.WriteLine("3. Update Category");
+        Console.WriteLine("4. Delete Category");
+        Console.WriteLine("5. Back to Main Menu");
+        Console.WriteLine("================================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void ProductManagement()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== PRODUCT MANAGEMENT =====");
+        Console.WriteLine("1. View All Products");
+        Console.WriteLine("2. Add Product");
+        Console.WriteLine("3. Update Product");
+        Console.WriteLine("4. Delete Product");
+        Console.WriteLine("5. Search Product");
+        Console.WriteLine("6. Back to Main Menu");
+        Console.WriteLine("===============================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void CustomerManagement()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== CUSTOMER MANAGEMENT =====");
+        Console.WriteLine("1. View All Customers");
+        Console.WriteLine("2. Add Customer");
+        Console.WriteLine("3. Update Customer");
+        Console.WriteLine("4. Delete Customer");
+        Console.WriteLine("5. Search Customer");
+        Console.WriteLine("6. Back to Main Menu");
+        Console.WriteLine("================================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void OrdersManagement()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== ORDERS MANAGEMENT =====");
+        Console.WriteLine("1. View All Orders");
+        Console.WriteLine("2. Create Order");
+        Console.WriteLine("3. Update Order");
+        Console.WriteLine("4. Delete Order");
+        Console.WriteLine("5. Order Details");
+        Console.WriteLine("6. Back to Main Menu");
+        Console.WriteLine("=============================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    // ===================== MANAGER MENU =====================
+    static void ManagerMenu()
+    {
+        bool isRunning = true;
+
+        while (isRunning)
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== MANAGER MENU =====");
+            Console.WriteLine("1. Category");
+            Console.WriteLine("2. Product");
+            Console.WriteLine("3. Customer");
+            Console.WriteLine("4. Orders");
+            Console.WriteLine("5. Logout");
+            Console.WriteLine("========================");
+            Console.Write("Select an option (1-5): ");
+
+            string selection = Console.ReadLine();
+
+            switch (selection)
+            {
+                case "1":
+                    ManagerCategoryMenu();
+                    break;
+                case "2":
+                    ManagerProductMenu();
+                    break;
+                case "3":
+                    ManagerCustomerMenu();
+                    break;
+                case "4":
+                    ManagerOrdersMenu();
+                    break;
+                case "5":
+                    isRunning = false;
+                    Console.WriteLine("\n✅ Logged out successfully.");
+                    break;
+                default:
+                    Console.WriteLine("❌ Invalid option. Press any key to continue...");
+                    Console.ReadKey();
+                    break;
+            }
+        }
+    }
+
+    static void ManagerCategoryMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== CATEGORY MANAGEMENT =====");
+        Console.WriteLine("1. View All Categories");
+        Console.WriteLine("2. Add Category");
+        Console.WriteLine("3. Update Category");
+        Console.WriteLine("4. Delete Category");
+        Console.WriteLine("5. Back to Main Menu");
+        Console.WriteLine("================================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void ManagerProductMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== PRODUCT MANAGEMENT =====");
+        Console.WriteLine("1. View All Products");
+        Console.WriteLine("2. Add Product");
+        Console.WriteLine("3. Update Product");
+        Console.WriteLine("4. Delete Product");
+        Console.WriteLine("5. Back to Main Menu");
+        Console.WriteLine("===============================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void ManagerCustomerMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== CUSTOMER MANAGEMENT =====");
+        Console.WriteLine("1. View All Customers");
+        Console.WriteLine("2. Add Customer");
+        Console.WriteLine("3. Update Customer");
+        Console.WriteLine("4. Back to Main Menu");
+        Console.WriteLine("================================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void ManagerOrdersMenu()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== ORDERS MANAGEMENT =====");
+        Console.WriteLine("1. View All Orders");
+        Console.WriteLine("2. Create Order");
+        Console.WriteLine("3. Update Order");
+        Console.WriteLine("4. Back to Main Menu");
+        Console.WriteLine("=============================");
+        Console.Write("Select an option: ");
+        string choice = Console.ReadLine();
+
+        Console.WriteLine($"\n(Feature coming soon for option {choice})");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    // ===================== EMPLOYEE MENU =====================
+    static void EmployeeMenu()
+    {
+        bool isRunning = true;
+
+        while (isRunning)
+        {
+            Console.Clear();
+            Console.WriteLine("\n===== EMPLOYEE MENU =====");
+            Console.WriteLine("1. View Products");
+            Console.WriteLine("2. Create Order");
+            Console.WriteLine("3. View Customers");
+            Console.WriteLine("4. Logout");
+            Console.WriteLine("========================");
+            Console.Write("Select an option (1-4): ");
+
+            string selection = Console.ReadLine();
+
+            switch (selection)
+            {
+                case "1":
+                    ViewProducts();
+                    break;
+                case "2":
+                    CreateOrder();
+                    break;
+                case "3":
+                    ViewCustomers();
+                    break;
+                case "4":
+                    isRunning = false;
+                    Console.WriteLine("\n✅ Logged out successfully.");
+                    break;
+                default:
+                    Console.WriteLine("❌ Invalid option. Press any key to continue...");
+                    Console.ReadKey();
+                    break;
+            }
+        }
+    }
+
+    static void ViewProducts()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== VIEW PRODUCTS =====");
+        Console.WriteLine("(Feature coming soon)");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void CreateOrder()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== CREATE ORDER =====");
+        Console.WriteLine("(Feature coming soon)");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void ViewCustomers()
+    {
+        Console.Clear();
+        Console.WriteLine("\n===== VIEW CUSTOMERS =====");
+        Console.WriteLine("(Feature coming soon)");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+}

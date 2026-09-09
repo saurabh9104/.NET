@@ -1,0 +1,56 @@
+﻿using ProductManagementSystem.Data;
+using ProductManagementSystem.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace ProductManagementSystem.Repository
+{
+    public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
+    {
+        public EmployeeRepository(ProductManagementDbContext context) : base(context)
+        {
+        }
+
+        // Get employees by department
+        public async Task<IEnumerable<Employee>> GetByDepartmentAsync(int departmentId)
+        {
+            return await FindAsync(e => e.DepartmentId == departmentId);
+        }
+
+        // Get employees by role
+        public async Task<IEnumerable<Employee>> GetByRoleAsync(int roleId)
+        {
+            return await FindAsync(e => e.RoleId == roleId);
+        }
+
+        // Get employee by email
+        public async Task<Employee> GetByEmailAsync(string email)
+        {
+            return await FirstOrDefaultAsync(e => e.Email == email);
+        }
+
+        // Get employee by name
+        public async Task<IEnumerable<Employee>> GetByNameAsync(string employeeName)
+        {
+            return await FindAsync(e => e.EmployeeName.Contains(employeeName));
+        }
+
+        // Check if employee exists by email
+        public async Task<bool> EmployeeExistsByEmailAsync(string email)
+        {
+            return await AnyAsync(e => e.Email == email);
+        }
+
+        // Get total employees in department
+        public async Task<int> GetDepartmentEmployeeCountAsync(int departmentId)
+        {
+            return await CountAsync(e => e.DepartmentId == departmentId);
+        }
+
+        // Get employees by role in department
+        public async Task<IEnumerable<Employee>> GetByRoleInDepartmentAsync(int departmentId, int roleId)
+        {
+            return await FindAsync(e => e.DepartmentId == departmentId && e.RoleId == roleId);
+        }
+    }
+}
