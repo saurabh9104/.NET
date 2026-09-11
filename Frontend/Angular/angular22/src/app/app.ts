@@ -2,9 +2,10 @@ import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { Parent } from './parent/parent';
+import { Directives } from './directives/directives';
 
 @Component({
-  imports: [FormsModule, Parent],
+  imports: [FormsModule,Directives],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

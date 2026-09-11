@@ -1,5 +1,5 @@
 <h2>Child Component</h2>
-<p>data from parent: {{ itemValue }}</p>
+<p>data from parent: {{ itemValue() }}</p>
 
 <input type="text" #inputValue>
 <button (click)="sendData(inputValue.value)">send value to parent</button>
