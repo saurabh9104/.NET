@@ -1,0 +1,6 @@
+
+<P>{{ name }}</P>
+
+<p>Data from child: {{ chhildData }}</p>
+
+<app-child [itemValue]="name" (dataEmmitter)="getData($event)"></app-child>
