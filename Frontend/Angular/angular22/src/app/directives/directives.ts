@@ -1,12 +1,14 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
+import { Highlight } from '../highlight';
 
 @Component({
-  imports: [NgIf],
+  imports: [NgStyle,Highlight],
   selector: 'app-directives',
   styleUrl: './directives.css',
   templateUrl: './directives.html',
 })
 export class Directives {
   isvisible: boolean = true;
+  istrue: boolean = false;
 }

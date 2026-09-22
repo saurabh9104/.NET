@@ -3,9 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { Parent } from './parent/parent';
 import { Directives } from './directives/directives';
+import { Pipes } from './pipes/pipes';
 
 @Component({
-  imports: [FormsModule,Directives],
+  imports: [FormsModule,Pipes],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

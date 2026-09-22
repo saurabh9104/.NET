@@ -1,7 +1,4 @@
-<h1 *ngIf="isvisible; else abc">this is conditional directives</h1>
+<h1 [ngStyle]="{backgroundColor:istrue?'lightgrey':'yellow', color:istrue?'black':'red'}">this is directives</h1>
 
-<h1>this is demo content</h1>
+<p appHighlight>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis modi voluptas illo est, sit facere tempora, adipisci aliquid ducimus neque recusandae molestias similique, deleniti laborum voluptate. Tenetur iusto nemo minus?</p>
 
-<ng-template #abc>
-  <h2>this is false directive</h2>
-</ng-template>
