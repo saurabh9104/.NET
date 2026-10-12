@@ -17,7 +17,7 @@ namespace MyApp.StringManupulation
             //{
             //    if (!uniqueStr.Contains(c))
             //    {
-            //        uniqueStr += c;xz
+            //        uniqueStr += c;
             //    }
             //}
             //Console.WriteLine(uniqueStr);

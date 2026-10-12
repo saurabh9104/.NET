@@ -12,6 +12,8 @@ namespace MyApp.StringManupulation
             //string str = "Hello World";
             //string upperStr = str.ToUpper();
             //Console.WriteLine("Uppercase: {0}", upperStr);
+
+
             string str = "Hello World";
             char[] arr = str.ToCharArray();
             string upperStr = "";

@@ -1,2 +1,7 @@
-<p>csk works!</p>
-<app-dhoni></app-dhoni>
+
+
+<P>{{ employee.name }}</P>
+
+<p>Data from dhoni: {{ employee.role }}</p>
+
+<app-dhoni [itemValue]="employee.name" (dataEmmitter)="getData($event)"></app-dhoni>

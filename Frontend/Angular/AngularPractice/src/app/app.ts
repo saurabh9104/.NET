@@ -6,7 +6,7 @@ import { Mi } from './mi/mi';
 import { Rcb } from './rcb/rcb';
 
 @Component({
-  imports: [Rcb, Mi, Csk, Gt],
+  imports: [Csk, Mi, Rcb, Gt],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

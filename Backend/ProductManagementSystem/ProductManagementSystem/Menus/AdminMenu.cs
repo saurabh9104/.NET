@@ -234,6 +234,9 @@ namespace ProductManagementSystem.Menus
                     Console.Write("Department Name : ");
                     newDepartment.DepartmentName = Console.ReadLine();
 
+                    Console.Write("Description Details: ");
+                    newDepartment.Description = Console.ReadLine();
+
                     departmentService.AddDepartment(newDepartment);
 
                     Console.WriteLine("Department Added Successfully.");

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 
 @Component({
   imports: [],
@@ -6,4 +6,14 @@ import { Component } from '@angular/core';
   styleUrl: './dhoni.css',
   templateUrl: './dhoni.html',
 })
-export class Dhoni {}
+export class Dhoni {
+  //@Input() itemValue: string = "";
+  //@Output() dataEmmitter = new EventEmitter<string>();
+  itemValue = input<string>();
+  dataEmmitter =output<string>();
+  
+  sendData(value: string) {
+    console.log("Data from dhoni: " + value);
+    this.dataEmmitter.emit(value);
+  }
+}

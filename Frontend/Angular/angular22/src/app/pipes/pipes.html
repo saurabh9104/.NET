@@ -1,3 +1,8 @@
+<div class="appearance" [ngClass]="{ dark: isdark }">
+  
 <p>{{ todayDate }}</p>
 <P>{{ todayDate | date }}</P>
 <p>{{ todayDate | date:'fullDate' }}</p>
+<button (click)="switch()">dark</button>
+<button (click)="switch()">white</button>
+</div>

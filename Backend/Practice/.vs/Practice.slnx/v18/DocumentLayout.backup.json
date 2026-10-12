@@ -23,15 +23,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Practice",
+              "Title": "Practice.csproj",
               "DocumentMoniker": "D:\\.NET\\Backend\\Practice\\Practice\\Practice.csproj",
               "RelativeDocumentMoniker": "Practice\\Practice.csproj",
               "ToolTip": "D:\\.NET\\Backend\\Practice\\Practice\\Practice.csproj",
               "RelativeToolTip": "Practice\\Practice.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-08-24T06:54:43.062Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-24T06:54:43.062Z"
             },
             {
               "$type": "Document",
@@ -39,8 +38,8 @@
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\.NET\\Backend\\Practice\\Practice\\Program.cs",
               "RelativeDocumentMoniker": "Practice\\Program.cs",
-              "ToolTip": "D:\\.NET\\Backend\\Practice\\Practice\\Program.cs*",
-              "RelativeToolTip": "Practice\\Program.cs*",
+              "ToolTip": "D:\\.NET\\Backend\\Practice\\Practice\\Program.cs",
+              "RelativeToolTip": "Practice\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-14T06:42:06.146Z",

@@ -1,1 +1,6 @@
-<p>dhoni works!</p>
+
+<h2>dhoni Component</h2>
+<p>data from csk: {{ itemValue() }}</p>
+
+<input type="text" #inputValue>
+<button (click)="sendData(inputValue.value)">send value to csk</button>

@@ -1,0 +1,10 @@
+@if (showLogin) {
+    <app-login
+        (signupRequested)="showRegister()">
+    </app-login>
+}
+@else {
+    <app-signup
+        (loginRequested)="showLoginPage()">
+    </app-signup>
+}

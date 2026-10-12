@@ -6,12 +6,13 @@ import { Directives } from './directives/directives';
 import { Pipes } from './pipes/pipes';
 
 @Component({
-  imports: [FormsModule,Pipes],
+  imports: [FormsModule],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
+
   //name: string = "saurabh";
   age: number = 25;
 
@@ -27,5 +28,7 @@ export class App {
   getValue(abc:any){
     alert(abc);
   }
+
+  isLogin: boolean = true;
 
 }

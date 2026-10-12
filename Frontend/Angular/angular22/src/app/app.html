@@ -2,9 +2,9 @@
 <p>I am {{ age }} years old.</p>
 
 <img [src]="srcimg" [alt]="alt" width="300" height="200">
-<br>
-<button (dblclick)="clickMe()">click image</button>
--->
+<br>-->
+<!-- <button (dblclick)="clickMe()">click image</button> -->
+
 <!-- two way  -->
  <!-- <input type="text" [(ngModel)]="name">
  <br><br>
@@ -13,4 +13,12 @@
 <h1>this is app componant</h1>
  <!-- <app-parent></app-parent> -->
   <!-- <app-directives></app-directives> -->
-  <app-pipes></app-pipes>
+  <!-- <app-pipes></app-pipes> -->
+   @if (isLogin) {
+    <p>Welcome to the application!</p>
+    <button (click)="isLogin = false" >Logout</button>
+
+   }@else {
+    <p>please login </p>
+    <button (click)="isLogin = true" >Login</button>
+   }

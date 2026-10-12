@@ -34,3 +34,4 @@ D:\.NET\Backend\ProductManagementSystem\ProductManagementSystem\obj\Debug\net10.
 D:\.NET\Backend\ProductManagementSystem\ProductManagementSystem\obj\Debug\net10.0\ProductManagementSystem.pdb
 D:\.NET\Backend\ProductManagementSystem\ProductManagementSystem\obj\Debug\net10.0\ProductManagementSystem.genruntimeconfig.cache
 D:\.NET\Backend\ProductManagementSystem\ProductManagementSystem\obj\Debug\net10.0\ref\ProductManagementSystem.dll
+D:\.NET\Backend\ProductManagementSystem\ProductManagementSystem\obj\Debug\net10.0\ProductManagementSystem.sourcelink.json

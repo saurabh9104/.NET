@@ -4,7 +4,11 @@ using System.Text;
 
 namespace MyApp.StringManupulation
 {
-    internal class Q25
+    public class Q25
     {
+        public static void checkgreatestin3()
+        {
+
+        }
     }
 }

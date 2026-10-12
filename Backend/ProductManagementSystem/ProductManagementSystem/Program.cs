@@ -68,7 +68,8 @@ class Program
     /// </summary>
     static void DisplayMenuByRole()
     {
-        // RoleId: 1 = Admin, 2 = Manager, 6 = Employee
+        // RoleId: 1 = Admin, 2 = Manager, 3 = Employee
+
         switch (_currentUser.RoleId)
         {
             case 1:

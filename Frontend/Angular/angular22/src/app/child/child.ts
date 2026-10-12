@@ -7,8 +7,8 @@ import { Component, EventEmitter, Input, input, output, Output } from '@angular/
   templateUrl: './child.html',
 })
 export class Child {
-  //@Input() itemValue: string = "";
-  //@Output() dataEmmitter = new EventEmitter<string>();
+  // @Input() itemValue: string = "";
+  // @Output() dataEmmitter = new EventEmitter<string>();
   itemValue = input<string>();
   dataEmmitter =output<string>();
   

@@ -13,8 +13,11 @@ namespace MyApp
             //Q16.CountCharacters();
             // Q17.CountVowelsAndConsonants();
             //Q18.reverseString();
-            // Q20.convertToUpperCase();
-            Q23.removeWhitespace();
+             Q20.convertToUpperCase();
+            //Q23.removeWhitespace();
+           // testing.test();
+            //
+            // Console.WriteLine("Press any key to continue...");
 
 
             // calculate the simple interest
