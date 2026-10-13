@@ -1,4 +1,5 @@
-﻿using MyApp.StringManupulation;
+﻿using MyApp.Assignment;
+using MyApp.StringManupulation;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Intrinsics.Arm;
@@ -13,10 +14,38 @@ namespace MyApp
             //Q16.CountCharacters();
             // Q17.CountVowelsAndConsonants();
             //Q18.reverseString();
-             Q20.convertToUpperCase();
+            // Q20.convertToUpperCase();
             //Q23.removeWhitespace();
-           // testing.test();
-            //
+            // testing.test();
+
+            ReverseNum.reverseNumber();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             // Console.WriteLine("Press any key to continue...");
 
 

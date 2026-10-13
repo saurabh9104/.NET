@@ -556,7 +556,7 @@ namespace ProductManagementSystem.Menus
                     productService.AddProduct(newProduct);
 
                     Console.WriteLine("Product Added Successfully.");
-                    break; ;
+                    break; 
 
                 case "3":
                     Product updateProduct = new Product();

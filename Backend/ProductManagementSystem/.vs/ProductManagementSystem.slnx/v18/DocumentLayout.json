@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\.NET\\Backend\\ProductManagementSystem\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|d:\\.net\\backend\\productmanagementsystem\\productmanagementsystem\\menus\\inventorymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|solutionrelative:productmanagementsystem\\menus\\inventorymenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|d:\\.net\\backend\\productmanagementsystem\\productmanagementsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|solutionrelative:productmanagementsystem\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,16 +15,12 @@
       "RelativeMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|solutionrelative:productmanagementsystem\\menus\\adminmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|d:\\.net\\backend\\productmanagementsystem\\productmanagementsystem\\utilities\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|solutionrelative:productmanagementsystem\\utilities\\session.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|d:\\.net\\backend\\productmanagementsystem\\productmanagementsystem\\service\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|solutionrelative:productmanagementsystem\\service\\productservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|d:\\.net\\backend\\productmanagementsystem\\productmanagementsystem\\repositories\\departmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|solutionrelative:productmanagementsystem\\repositories\\departmentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|d:\\.net\\backend\\productmanagementsystem\\productmanagementsystem\\service\\departmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|solutionrelative:productmanagementsystem\\service\\departmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|d:\\.net\\backend\\productmanagementsystem\\productmanagementsystem\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37E69F02-9081-4243-88E0-2EFF3B15DD19}|ProductManagementSystem\\ProductManagementSystem.csproj|solutionrelative:productmanagementsystem\\repositories\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,73 +30,73 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ProductService.cs",
+              "DocumentMoniker": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Service\\ProductService.cs",
+              "RelativeDocumentMoniker": "ProductManagementSystem\\Service\\ProductService.cs",
+              "ToolTip": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Service\\ProductService.cs",
+              "RelativeToolTip": "ProductManagementSystem\\Service\\ProductService.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAiwB0AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T19:15:50.14Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Repositories\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "ProductManagementSystem\\Repositories\\ProductRepository.cs",
+              "ToolTip": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Repositories\\ProductRepository.cs",
+              "RelativeToolTip": "ProductManagementSystem\\Repositories\\ProductRepository.cs",
+              "ViewState": "AgIAAN8AAAAAAAAAAAAYwOwAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T19:04:09.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InventoryMenu.cs",
+              "DocumentMoniker": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Menus\\InventoryMenu.cs",
+              "RelativeDocumentMoniker": "ProductManagementSystem\\Menus\\InventoryMenu.cs",
+              "ToolTip": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Menus\\InventoryMenu.cs",
+              "RelativeToolTip": "ProductManagementSystem\\Menus\\InventoryMenu.cs",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAiwJ4AAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-12T18:46:33.267Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Session.cs",
-              "DocumentMoniker": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Utilities\\Session.cs",
-              "RelativeDocumentMoniker": "ProductManagementSystem\\Utilities\\Session.cs",
-              "ToolTip": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Utilities\\Session.cs",
-              "RelativeToolTip": "ProductManagementSystem\\Utilities\\Session.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T11:19:59.226Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "AdminMenu.cs",
               "DocumentMoniker": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Menus\\AdminMenu.cs",
               "RelativeDocumentMoniker": "ProductManagementSystem\\Menus\\AdminMenu.cs",
               "ToolTip": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Menus\\AdminMenu.cs",
               "RelativeToolTip": "ProductManagementSystem\\Menus\\AdminMenu.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAYAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEcCAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T11:04:48.991Z"
+              "WhenOpened": "2026-10-12T11:04:48.991Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DepartmentRepository.cs",
-              "DocumentMoniker": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Repositories\\DepartmentRepository.cs",
-              "RelativeDocumentMoniker": "ProductManagementSystem\\Repositories\\DepartmentRepository.cs",
-              "ToolTip": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Repositories\\DepartmentRepository.cs",
-              "RelativeToolTip": "ProductManagementSystem\\Repositories\\DepartmentRepository.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T11:05:25.524Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "DepartmentService.cs",
-              "DocumentMoniker": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Service\\DepartmentService.cs",
-              "RelativeDocumentMoniker": "ProductManagementSystem\\Service\\DepartmentService.cs",
-              "ToolTip": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Service\\DepartmentService.cs",
-              "RelativeToolTip": "ProductManagementSystem\\Service\\DepartmentService.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAAAuwAwAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-12T11:06:16.511Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Program.cs",
               "RelativeDocumentMoniker": "ProductManagementSystem\\Program.cs",
               "ToolTip": "D:\\.NET\\Backend\\ProductManagementSystem\\ProductManagementSystem\\Program.cs",
               "RelativeToolTip": "ProductManagementSystem\\Program.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAAAUwEUAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAADoAAAAAAAAAAAAkwEYAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-03T06:09:18.224Z",
               "EditorCaption": ""

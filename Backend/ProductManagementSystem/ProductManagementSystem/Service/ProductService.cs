@@ -31,6 +31,18 @@ namespace ProductManagementSystem.Service
         {
             return repository.SearchByName(name);
         }
+        public List<Product> DisplayLowStockProducts()
+        {
+            return repository.GetLowStockProducts();
+        }
+        public void updateProductQuantity(int productId, int newQuantity)
+        {
+            repository.UpdateProductQuantity(productId, newQuantity);
+        }
+        public void updateProductReorderLevel(int productId, int newReorderLevel)
+        {
+            repository.UpdateProductReorderLevel(productId, newReorderLevel);
+        }
     }
 }
 

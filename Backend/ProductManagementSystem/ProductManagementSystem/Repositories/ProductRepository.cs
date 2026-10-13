@@ -214,7 +214,7 @@ namespace ProductManagementSystem.Repositories
             return products;
         }
 
-        public void UpdateQuantity(int productId, int newQuantity)
+        public void UpdateProductQuantity(int productId, int newQuantity)
         {
             using MySqlConnection con = DBHelper.GetConnection();
 
@@ -222,6 +222,20 @@ namespace ProductManagementSystem.Repositories
 
             MySqlCommand cmd = new(query, con);
             cmd.Parameters.AddWithValue("@Quantity", newQuantity);
+            cmd.Parameters.AddWithValue("@ProductId", productId);
+
+            con.Open();
+            cmd.ExecuteNonQuery();
+        }
+
+        internal void UpdateProductReorderLevel(int productId, int newReorderLevel)
+        {
+            using MySqlConnection con = DBHelper.GetConnection();
+
+            string query = "UPDATE Product SET ReorderLevel = @ReorderLevel WHERE ProductId = @ProductId";
+
+            MySqlCommand cmd = new(query, con);
+            cmd.Parameters.AddWithValue("@ReorderLevel", newReorderLevel);
             cmd.Parameters.AddWithValue("@ProductId", productId);
 
             con.Open();
